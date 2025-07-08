@@ -1,0 +1,39 @@
+/* 拍剪页面专用样式 */
+:root {
+    --gold: #FFD700;
+    --accent: #00BCD4;
+    --dark: #1A1A1A;
+    --light: #F8F9FA;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.section-title {
+    color: var(--accent);
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: var(--accent);
+}
+
+.card {
+    border: 1px solid var(--accent);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
