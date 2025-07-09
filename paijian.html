@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>拍剪 - LUXE LOCKER</title>
+    <title>拍剪 - 视频编辑技术</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="paijian.css">
 </head>
@@ -33,18 +32,177 @@
         </div>
     </nav>
     <div class="container mt-5">
-        <h1 class="section-title">拍剪 页面</h1>
-        <p class="lead">这是拍剪相关内容的独立页面，您可以在这里添加具体内容。</p>
-        <div class="card mt-4">
-            <div class="card-body">
-                <h5 class="card-title">拍剪 服务介绍</h5>
-                <p class="card-text">这里可以放置拍剪相关的服务描述、产品信息或案例展示。</p>
+        <h1 class="section-title">视频编辑技术</h1>
+        <p class="lead">视频编辑是对视频素材进行采集、剪辑、特效处理、字幕添加和音频混合的过程，是影视制作、自媒体创作和广告宣传的核心环节。</p>
+
+        <!-- 视频编辑定义 -->
+        <section class="video-editing-intro mt-5">
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title">什么是视频编辑？</h2>
+                    <p>视频编辑是将原始视频素材经过选择、剪裁、组合、添加特效和音频处理，最终形成完整视频作品的过程。对初学者来说，数字视频编辑是一件相当消耗时间的工作，包括素材捕捉、时间线编辑、特效渲染和格式压缩等环节<mcreference link="https://www.bkw.cn/glzjs/ask/4427531.html" index="5">5</mcreference>。</p>
+                    <p>随着技术的进步，视频编辑软件迎来了蓬勃发展，从专业电影制作到个人自媒体创作，视频编辑技术已成为数字内容生产的核心技能<mcreference link="https://m.php.cn/faq/1319711.html" index="2">2</mcreference>。</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="editing-workflow" id="editing-workflow">
+                        <!-- 视频编辑工作流SVG动画 -->
+                        <svg width="100%" height="300" viewBox="0 0 600 300" id="editing-svg">
+                            <g id="workflow-container"></g>
+                        </svg>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- 核心技术 -->
+        <section class="editing-technologies mt-5" data-aos="fade-up">
+            <h2 class="section-title">核心编辑技术</h2>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="tech-card" data-tech="nle">
+                        <h3>非线性编辑 (NLE)</h3>
+                        <p>通过计算机软件对视频素材进行非破坏性编辑，可随意调整剪辑顺序和位置，是现代视频编辑的基础技术。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tech-card" data-tech="effects">
+                        <h3>特效与合成技术</h3>
+                        <p>包括转场效果、滤镜应用、绿幕抠像和多层合成，能实现现实中无法拍摄的视觉效果<mcreference link="https://m.renrendoc.com/paper/388914162.html" index="1">1</mcreference>。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tech-card" data-tech="color">
+                        <h3>色彩校正与调色</h3>
+                        <p>调整视频的白平衡、对比度、饱和度和色调，营造特定视觉风格，增强故事表现力。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tech-card" data-tech="encoding">
+                        <h3>视频编码技术</h3>
+                        <p>采用高效压缩算法(如H.264/AVC、H.265/HEVC、AV1)，在保证画质的同时减小文件体积，便于存储和传输<mcreference link="http://m.toutiao.com/group/7524529294706704906/" index="3">3</mcreference>。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="detection-technologies mt-5" data-aos="fade-up">
+            <h2 class="section-title">核心检测技术</h2>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="tech-card" data-tech="cctv">
+                        <h3>CCTV检测技术</h3>
+                        <p>通过闭路电视摄像头深入管道内部，实时传输图像，精准识别管道缺陷和故障点<mcreference link="https://m.doc88.com/p-1981304489486.html" index="1">1</mcreference>。</p>
+                        <div class="tech-visualization"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tech-card" data-tech="sonar">
+                        <h3>声纳检测技术</h3>
+                        <p>利用声波原理探测管道内部结构和沉积物情况，适用于充满水或高水位的管道环境<mcreference link="https://m.doc88.com/p-1981304489486.html" index="1">1</mcreference>。</p>
+                        <div class="tech-visualization"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tech-card" data-tech="periscope">
+                        <h3>潜望镜检测技术</h3>
+                        <p>通过伸缩式摄像头快速检查管道内部状况，适用于检查井和管道口的初步检测<mcreference link="https://m.doc88.com/p-1981304489486.html" index="1">1</mcreference>。</p>
+                        <div class="tech-visualization"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tech-card" data-tech="laser">
+                        <h3>激光检测技术</h3>
+                        <p>利用激光扫描精确测量管道变形和沉积物厚度，提供三维管道内部模型<mcreference link="https://m.doc88.com/p-1981304489486.html" index="1">1</mcreference>。</p>
+                        <div class="tech-visualization"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="detection-history mt-5" data-aos="fade-up">
+            <h2 class="section-title">排检技术发展历程</h2>
+            <div class="timeline" id="detection-timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-items" id="detection-timeline-items"></div>
+            </div>
+        </section>
+
+        <section class="detection-application mt-5" data-aos="fade-up">
+            <h2 class="section-title">技术应用与未来趋势</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="lead">现代排检技术正朝着自动化、智能化方向发展，计算机和人工智能技术的引入大幅提高了检测精度和效率<mcreference link="https://www.renrendoc.com/paper/438570413.html" index="2">2</mcreference>。</p>
+                    <p>未来，超声导波、激光超声等新型检测技术将继续拓展排检技术的应用范围，为城市排水系统的智慧管理提供更强有力的技术支撑<mcreference link="https://www.renrendoc.com/paper/438570413.html" index="2">2</mcreference>。</p>
+                </div>
+                <div class="col-lg-4" id="tech-comparison">
+                    <!-- 检测技术对比工具将通过JS动态生成 -->
+                    <div class="comparison-container">
+                        <h4>技术对比选择器</h4>
+                        <div class="comparison-selector">
+                            <select id="tech-type-1" class="form-select mb-3">
+                                <option value="cctv">CCTV检测</option>
+                                <option value="sonar">声纳检测</option>
+                                <option value="periscope">潜望镜检测</option>
+                                <option value="laser">激光检测</option>
+                            </select>
+                            <select id="tech-type-2" class="form-select mb-3">
+                                <option value="sonar">声纳检测</option>
+                                <option value="cctv">CCTV检测</option>
+                                <option value="periscope">潜望镜检测</option>
+                                <option value="laser">激光检测</option>
+                            </select>
+                            <button id="compare-tech" class="btn btn-primary">对比技术参数</button>
+                        </div>
+                        <div id="comparison-result" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <script src="paijian.js"></script>
+    <script>
+        // 视频编辑工作流动画
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init();
+            createEditingWorkflow();
+            createTimeline();
+            initComparisonTool();
+        });
+
+        // 工作流可视化
+        function createEditingWorkflow() {
+            // 创建视频编辑流程动画
+            const stages = ["素材采集", "导入编辑", "剪辑拼接", "特效添加", "调色处理", "音频混合", "导出发布"];
+            const colors = ["#3498db", "#2ecc71", "#9b59b6", "#e74c3c", "#f39c12", "#1abc9c", "#34495e"];
+            
+            // ... 工作流动画实现代码 ...
+        }
+
+        // 时间线实现
+        function createTimeline() {
+            const timelineData = [
+                { year: "1920s", event: "线性剪辑时代", description: "使用胶片剪接器进行物理剪辑"
+            },
+                { year: "1970s", event: "电子编辑系统", description: "基于磁带的线性编辑技术"
+            },
+                { year: "1990s", event: "非线性编辑兴起", description: "计算机技术开始应用于视频编辑"
+            },
+                { year: "2000s", event: "数字工作流成熟", description: "全数字化编辑流程普及"
+            },
+                { year: "2010s", event: "云编辑与AI辅助", description: "云端协作和人工智能技术应用"
+            },
+                { year: "2020s", event: "实时渲染时代", description: "8K编辑和实时特效渲染成为可能"
+            }
+            ];
+            
+            // ... 时间线实现代码 ...
+        }
+
+        // 技术对比工具
+        function initComparisonTool() {
+            // ... 技术对比工具实现代码 ...
+        }
+    </script>
 </body>
 </html>

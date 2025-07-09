@@ -35,16 +35,328 @@
     <div class="container mt-5">
         <h1 class="section-title">社交 页面</h1>
         <p class="lead">这是社交相关内容的独立页面，您可以在这里添加具体内容。</p>
-        <div class="card mt-4">
-            <div class="card-body">
-                <h5 class="card-title">社交 服务介绍</h5>
-                <p class="card-text">这里可以放置社交相关的服务描述、产品信息或案例展示。</p>
+        <!-- 社交网络科普内容 -->
+        <section class="social-intro mt-5">
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title">什么是社交网络？</h2>
+                    <p class="lead">社交网络是一种基于互联网技术的社会交往方式，它通过提供多种互动手段和内容分享机制，促进了人与人之间的交流和联系<mcreference link="https://m.renrendoc.com/paper/306214677.html" index="3">3</mcreference>。</p>
+                    <p>从早期的BBS和聊天室，到现代的微信、Facebook等平台，社交网络不断演变，已成为人们日常生活和工作中不可或缺的一部分<mcreference link="https://m.book118.com/html/2024/0501/6155210243010123.shtm" index="1">1</mcreference>。</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="social-evolution-visualization" id="social-evolution-visualization">
+                        <!-- 社交网络 evolution 可视化将通过JS动态生成 -->
+                        <svg width="100%" height="300" viewBox="0 0 600 300" id="evolution-svg">
+                            <g id="evolution-container"></g>
+                        </svg>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="social-technologies mt-5" data-aos="fade-up">
+            <h2 class="section-title">社交网络核心技术</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>大数据分析</h3>
+                        <p>驱动社交平台的智能推荐系统，分析用户行为模式，提供个性化内容<mcreference link="https://blog.csdn.net/AdsMagics/article/details/145499703" index="2">2</mcreference>。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>人工智能</h3>
+                        <p>实现智能聊天机器人、内容审核和社交助手，优化用户体验<mcreference link="https://blog.csdn.net/AdsMagics/article/details/145499703" index="2">2</mcreference>。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>VR/AR技术</h3>
+                        <p>创造沉浸式虚拟社交空间，模糊现实与虚拟的界限<mcreference link="https://blog.csdn.net/AdsMagics/article/details/145499703" index="2">2</mcreference>。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="social-history mt-5" data-aos="fade-up">
+            <h2 class="section-title">社交网络发展历程</h2>
+            <div class="timeline" id="social-timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-items" id="social-timeline-items"></div>
+            </div>
+        </section>
+
+        <section class="social-future mt-5" data-aos="fade-up">
+            <h2 class="section-title">未来趋势：元宇宙社交</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="lead">元宇宙是一个由多种技术构建的数字世界，人们可以在其中以虚拟身份进行社交、工作、娱乐等多种活动，强调沉浸式体验<mcreference link="https://blog.csdn.net/AdsMagics/article/details/145499703" index="2">2</mcreference>。</p>
+                    <p>元宇宙社交将带来更自然的远程互动和个性化虚拟场景构建，使线上社交更具空间感和沉浸感<mcreference link="https://blog.csdn.net/AdsMagics/article/details/145499703" index="2">2</mcreference>。</p>
+                </div>
+                <div class="col-lg-4" id="metaverse-visualization">
+                    <!-- 元宇宙社交可视化将通过JS动态生成 -->
+                </div>
+            </div>
+        </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        // 社交网络发展可视化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 绘制社交网络发展阶段
+            const svg = document.getElementById('evolution-svg');
+            const container = document.getElementById('evolution-container');
+            const width = 600;
+            const height = 300;
+
+            // 发展阶段数据
+            const evolutionStages = [
+                { name: 'BBS时代', year: '1970s', color: '#3498db', x: 100, y: 150, radius: 40 },
+                { name: '社交媒体', year: '2000s', color: '#9b59b6', x: 250, y: 150, radius: 50 },
+                { name: '移动社交', year: '2010s', color: '#e74c3c', x: 400, y: 150, radius: 60 },
+                { name: '元宇宙', year: '未来', color: '#f1c40f', x: 550, y: 150, radius: 70 }
+            ];
+
+            // 绘制连接线
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', evolutionStages[0].x);
+            line.setAttribute('y1', evolutionStages[0].y);
+            line.setAttribute('x2', evolutionStages[0].x);
+            line.setAttribute('y2', evolutionStages[0].y);
+            line.setAttribute('stroke', '#ccc');
+            line.setAttribute('stroke-width', '4');
+            line.setAttribute('stroke-dasharray', '8,4');
+            container.appendChild(line);
+
+            // 动画绘制连接线
+            setTimeout(() => {
+                line.setAttribute('x2', evolutionStages[evolutionStages.length - 1].x);
+                line.setAttribute('y2', evolutionStages[evolutionStages.length - 1].y);
+                line.style.transition = 'x2 2s ease-out, y2 2s ease-out';
+            }, 500);
+
+            // 绘制阶段节点
+            evolutionStages.forEach((stage, index) => {
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', stage.x);
+                circle.setAttribute('cy', stage.y);
+                circle.setAttribute('r', 0);
+                circle.setAttribute('fill', stage.color);
+                circle.setAttribute('stroke', '#fff');
+                circle.setAttribute('stroke-width', '3');
+                circle.setAttribute('opacity', '0.8');
+                circle.setAttribute('class', 'evolution-node');
+
+                // 创建阶段名称
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', stage.x);
+                text.setAttribute('y', stage.y);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('dominant-baseline', 'middle');
+                text.setAttribute('fill', '#fff');
+                text.setAttribute('font-weight', 'bold');
+                text.setAttribute('font-size', '14');
+                text.textContent = stage.name;
+                text.setAttribute('opacity', '0');
+
+                // 创建年份
+                const yearText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                yearText.setAttribute('x', stage.x);
+                yearText.setAttribute('y', stage.y + 30);
+                yearText.setAttribute('text-anchor', 'middle');
+                yearText.setAttribute('dominant-baseline', 'middle');
+                yearText.setAttribute('fill', '#fff');
+                yearText.setAttribute('font-size', '12');
+                yearText.textContent = stage.year;
+                yearText.setAttribute('opacity', '0');
+
+                container.appendChild(circle);
+                container.appendChild(text);
+                container.appendChild(yearText);
+
+                // 动画效果
+                setTimeout(() => {
+                    circle.setAttribute('r', stage.radius);
+                    circle.style.transition = 'r 0.8s ease-out';
+                    setTimeout(() => {
+                        text.setAttribute('opacity', '1');
+                        yearText.setAttribute('opacity', '1');
+                        text.style.transition = 'opacity 0.5s ease-out';
+                        yearText.style.transition = 'opacity 0.5s ease-out';
+                    }, 500);
+                }, 1000 + index * 1000);
+            });
+
+            // 创建时间线
+            const timelineItems = document.getElementById('social-timeline-items');
+            const timelineData = [
+                { year: '1970s', event: 'BBS（公告板系统）诞生，用户通过电话线连接进行信息交流<mcreference link="https://m.book118.com/html/2024/0501/6155210243010123.shtm" index="1">1</mcreference>' },
+                { year: '1990s', event: '聊天室兴起，用户可以实时在线交流，打破地域和时间限制<mcreference link="https://m.book118.com/html/2024/0501/6155210243010123.shtm" index="1">1</mcreference>' },
+                { year: '2004', event: 'Facebook创立，标志着社交网络进入新纪元，基于真实身份构建社交关系<mcreference link="https://blog.csdn.net/AdsMagics/article/details/145499703" index="2">2</mcreference>' },
+                { year: '2005', event: 'Web2.0时代到来，社交网络进入快速发展期，以用户生成内容和个性化互动为特点<mcreference link="https://m.renrendoc.com/paper/306214677.html" index="3">3</mcreference>' },
+                { year: '2010s', event: '移动社交时代开启，微信、陌陌等应用凭借实时、便捷特点迅速占领市场<mcreference link="https://m.book118.com/html/2024/0501/6155210243010123.shtm" index="1">1</mcreference>' },
+                { year: '2020s', event: '元宇宙概念兴起，VR/AR技术推动沉浸式社交体验发展<mcreference link="https://blog.csdn.net/AdsMagics/article/details/145499703" index="2">2</mcreference>' }
+            ];
+
+            timelineData.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.setAttribute('data-aos', 'fade-up');
+                timelineItem.setAttribute('data-aos-delay', `${index * 100}`);
+
+                timelineItem.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-year">${item.year}</h3>
+                        <p>${item.event}</p>
+                    </div>
+                `;
+
+                timelineItems.appendChild(timelineItem);
+            });
+
+            // 创建元宇宙社交可视化
+            const metaverseContainer = document.getElementById('metaverse-visualization');
+            metaverseContainer.innerHTML = `
+                <svg width="100%" height="200" viewBox="0 0 300 200" id="metaverse-svg">
+                    <g id="metaverse-group">
+                        <!-- 元宇宙社交场景将通过JS动态生成 -->
+                    </g>
+                </svg>
+            `;
+
+            const metaSvg = document.getElementById('metaverse-svg');
+            const metaGroup = document.getElementById('metaverse-group');
+
+            // 创建简单的元宇宙社交场景
+            const createAvatar = (x, y, color) => {
+                const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                group.setAttribute('transform', `translate(${x}, ${y})`);
+                group.setAttribute('class', 'meta-avatar');
+
+                // 头部
+                const head = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                head.setAttribute('cx', 0);
+                head.setAttribute('cy', 0);
+                head.setAttribute('r', 15);
+                head.setAttribute('fill', color);
+
+                // 身体
+                const body = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                body.setAttribute('x', -10);
+                body.setAttribute('y', 15);
+                body.setAttribute('width', 20);
+                body.setAttribute('height', 30);
+                body.setAttribute('fill', color);
+
+                group.appendChild(head);
+                group.appendChild(body);
+                metaGroup.appendChild(group);
+
+                return group;
+            };
+
+            // 创建几个虚拟人物
+            const avatars = [
+                { x: 70, y: 100, color: '#3498db' },
+                { x: 150, y: 80, color: '#e74c3c' },
+                { x: 230, y: 100, color: '#2ecc71' }
+            ];
+
+            avatars.forEach((avatar, index) => {
+                const avatarGroup = createAvatar(avatar.x, avatar.y, avatar.color);
+                avatarGroup.style.opacity = '0';
+                avatarGroup.style.transform = `translate(${avatar.x}, ${avatar.y}) scale(0.5)`;
+
+                setTimeout(() => {
+                    avatarGroup.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+                    avatarGroup.style.opacity = '1';
+                    avatarGroup.style.transform = `translate(${avatar.x}, ${avatar.y}) scale(1)`;
+                }, 1000 + index * 300);
+            });
+
+            // 创建对话气泡连接线
+            const createConnection = (x1, y1, x2, y2) => {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const dx = x2 - x1;
+                const dy = y2 - y1;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const controlX = x1 + dx * 0.5;
+                const controlY = y1 + dy * 0.5 - 20;
+
+                line.setAttribute('d', `M ${x1} ${y1} Q ${controlX} ${controlY}, ${x2} ${y2}`);
+                line.setAttribute('stroke', '#ccc');
+                line.setAttribute('stroke-width', '2');
+                line.setAttribute('fill', 'none');
+                line.setAttribute('stroke-dasharray', distance);
+                line.setAttribute('stroke-dashoffset', distance);
+                metaGroup.appendChild(line);
+
+                setTimeout(() => {
+                    line.style.transition = 'stroke-dashoffset 1s ease-out';
+                    line.setAttribute('stroke-dashoffset', '0');
+                }, 2500);
+            };
+
+            // 创建对话连接
+            createConnection(70, 85, 150, 65);
+            createConnection(150, 65, 230, 85);
+        });
+    </script>
+
+    <style>
+        /* 社交网络可视化样式 */
+        .social-evolution-visualization {
+            background-color: rgba(33, 37, 41, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .evolution-node { cursor: pointer; transition: all 0.3s ease; }
+        .evolution-node:hover { transform: scale(1.1); opacity: 1; }
+
+        /* 技术卡片样式 */
+        .tech-card {
+            background-color: rgba(33, 37, 41, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #9b59b6;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            background-color: rgba(33, 37, 41, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .tech-card h3 {
+            color: #9b59b6;
+            margin-bottom: 10px;
+        }
+
+        /* 元宇宙可视化样式 */
+        #metaverse-visualization {
+            background-color: rgba(33, 37, 41, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .meta-avatar { cursor: pointer; transition: all 0.3s ease; }
+        .meta-avatar:hover { transform: translate(var(--x), var(--y)) scale(1.2); }
+    </style>
+
     <script src="shejiao.js"></script>
 </body>
 </html>

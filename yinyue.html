@@ -35,16 +35,316 @@
     <div class="container mt-5">
         <h1 class="section-title">音乐 页面</h1>
         <p class="lead">这是音乐相关内容的独立页面，您可以在这里添加具体内容。</p>
-        <div class="card mt-4">
-            <div class="card-body">
-                <h5 class="card-title">音乐 服务介绍</h5>
-                <p class="card-text">这里可以放置音乐相关的服务描述、产品信息或案例展示。</p>
+        <!-- 音乐技术科普内容 -->
+        <section class="music-intro mt-5">
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title">什么是音乐技术？</h2>
+                    <p class="lead">音乐技术是涉及音乐制作、录制、传播和创新的技术手段总和，涵盖从传统乐器制造到现代数字音频处理的全领域<mcreference link="https://m.jinchutou.com/shtml/view-595393619.html" index="1">1</mcreference>。</p>
+                    <p>从古希腊的手工制作乐器到今天的人工智能作曲，音乐技术不断推动着音乐艺术的边界，改变着人们创作、表演和体验音乐的方式<mcreference link="https://m.jinchutou.com/shtml/view-595393619.html" index="1">1</mcreference>。</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="music-visualization" id="music-visualization">
+                        <!-- 音乐波形可视化将通过JS动态生成 -->
+                        <svg width="100%" height="300" viewBox="0 0 600 300" id="waveform-svg">
+                            <g id="waveform-container"></g>
+                        </svg>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="music-technologies mt-5" data-aos="fade-up">
+            <h2 class="section-title">音乐技术核心领域</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>数字音频工作站</h3>
+                        <p>如Cubase、Logic Pro等DAW软件，使音乐制作变得更加便捷高效<mcreference link="https://m.jinchutou.com/shtml/view-595393619.html" index="1">1</mcreference>。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>电子合成器</h3>
+                        <p>从早期模拟合成器到现代数字合成器，能够模拟各种乐器声音并创造新音色<mcreference link="https://m.renrendoc.com/paper/391313898.html" index="2">2</mcreference>。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>人工智能音乐</h3>
+                        <p>利用大数据和机器学习技术进行音乐创作、分析听众喜好和预测市场需求<mcreference link="https://m.book118.com/html/2025/0115/6042030152011025.shtm" index="4">4</mcreference>。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="music-history mt-5" data-aos="fade-up">
+            <h2 class="section-title">音乐技术发展历程</h2>
+            <div class="timeline" id="music-timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-items" id="music-timeline-items"></div>
+            </div>
+        </section>
+
+        <section class="music-future mt-5" data-aos="fade-up">
+            <h2 class="section-title">未来趋势：沉浸式音乐体验</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="lead">虚拟现实技术提供丰富音乐体验，让用户可以在虚拟环境中进行创作和演奏，拓宽了音乐创作的空间<mcreference link="https://m.jinchutou.com/shtml/view-595393619.html" index="1">1</mcreference>。</p>
+                    <p>区块链技术可以提供音乐版权保护和分配的透明性和效率，而人工智能音乐生成则使创作过程更加高效和创新<mcreference link="https://m.book118.com/html/2025/0115/6042030152011025.shtm" index="4">4</mcreference>。</p>
+                </div>
+                <div class="col-lg-4" id="music-tech-demo">
+                    <!-- 音乐技术演示将通过JS动态生成 -->
+                    <div class="demo-container">
+                        <button id="play-demo" class="btn btn-primary">播放演示音乐</button>
+                        <div id="demo-status" class="mt-3 text-center">点击按钮体验不同时代的音乐技术</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        // 音乐波形可视化
+        document.addEventListener('DOMContentLoaded', function() {
+            const svg = document.getElementById('waveform-svg');
+            const container = document.getElementById('waveform-container');
+            const width = 600;
+            const height = 300;
+            const centerY = height / 2;
+            const barCount = 60;
+            const barWidth = width / barCount;
+            let animationId;
+            let isPlaying = false;
+
+            // 创建初始波形
+            function createWaveform() {
+                container.innerHTML = '';
+                for (let i = 0; i < barCount; i++) {
+                    const bar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                    const x = i * barWidth;
+                    const randomHeight = Math.random() * 100 + 20;
+                    const y = centerY - randomHeight / 2;
+
+                    bar.setAttribute('x', x);
+                    bar.setAttribute('y', y);
+                    bar.setAttribute('width', barWidth - 2);
+                    bar.setAttribute('height', randomHeight);
+                    bar.setAttribute('fill', '#e74c3c');
+                    bar.setAttribute('rx', 2);
+                    bar.setAttribute('class', 'wave-bar');
+
+                    container.appendChild(bar);
+                }
+            }
+
+            // 动画更新波形
+            function updateWaveform() {
+                if (!isPlaying) return;
+
+                const bars = document.querySelectorAll('.wave-bar');
+                bars.forEach(bar => {
+                    const currentHeight = parseFloat(bar.getAttribute('height'));
+                    const randomChange = (Math.random() - 0.5) * 40;
+                    let newHeight = currentHeight + randomChange;
+
+                    // 限制高度范围
+                    newHeight = Math.max(20, Math.min(newHeight, 180));
+                    const newY = centerY - newHeight / 2;
+
+                    bar.setAttribute('height', newHeight);
+                    bar.setAttribute('y', newY);
+
+                    // 颜色随高度变化
+                    const hue = 360 * (newHeight / 180);
+                    bar.setAttribute('fill', `hsl(${hue}, 70%, 50%)`);
+                });
+
+                animationId = requestAnimationFrame(updateWaveform);
+            }
+
+            // 初始化波形
+            createWaveform();
+
+            // 开始波形动画
+            function startWaveAnimation() {
+                if (!isPlaying) {
+                    isPlaying = true;
+                    updateWaveform();
+                }
+            }
+
+            // 停止波形动画
+            function stopWaveAnimation() {
+                isPlaying = false;
+                cancelAnimationFrame(animationId);
+            }
+
+            // 创建时间线
+            const timelineItems = document.getElementById('music-timeline-items');
+            const timelineData = [
+                { year: '1914', event: '法国作曲家皮埃尔·亨利使用机械装置创作了《机械的来源》，标志着电子音乐的诞生<mcreference link="https://m.renrendoc.com/paper/391313898.html" index="2">2</mcreference>' },
+                { year: '1950', event: '美国作曲家埃德温·阿罗兹发明了第一个实用的电子音乐合成器——“音乐合成器”<mcreference link="https://m.renrendoc.com/paper/391313898.html" index="2">2</mcreference>' },
+                { year: '1958', event: '英国广播公司（BBC）建立了第一个电子音乐工作室，推动了电子音乐技术的普及<mcreference link="https://m.renrendoc.com/paper/391313898.html" index="2">2</mcreference>' },
+                { year: '1970s', event: '日本Yamaha公司推出DX-7合成器，使得电子音乐合成器更加普及<mcreference link="https://m.renrendoc.com/paper/391313898.html" index="2">2</mcreference>' },
+                { year: '1980s', event: '数字音频工作站（DAW）出现，数字信号处理（DSP）技术应用于音乐制作<mcreference link="https://m.renrendoc.com/paper/391313898.html" index="2">2</mcreference>' },
+                { year: '2020s', event: '人工智能和虚拟现实技术在音乐创作和体验中广泛应用<mcreference link="https://m.book118.com/html/2025/0115/6042030152011025.shtm" index="4">4</mcreference>' }
+            ];
+
+            timelineData.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.setAttribute('data-aos', 'fade-up');
+                timelineItem.setAttribute('data-aos-delay', `${index * 100}`);
+
+                timelineItem.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-year">${item.year}</h3>
+                        <p>${item.event}</p>
+                    </div>
+                `;
+
+                timelineItems.appendChild(timelineItem);
+            });
+
+            // 音乐技术演示
+            const playButton = document.getElementById('play-demo');
+            const statusDisplay = document.getElementById('demo-status');
+            let audioContext;
+            let oscillator;
+            let gainNode;
+            let currentTechEra = 0;
+
+            const techEras = [
+                { name: '早期电子音乐 (1950s)', type: 'sine' },
+                { name: '合成器时代 (1970s)', type: 'square' },
+                { name: '数字音乐 (1990s)', type: 'sawtooth' },
+                { name: '现代电子音乐 (2020s)', type: 'triangle' }
+            ];
+
+            playButton.addEventListener('click', function() {
+                if (audioContext) {
+                    if (audioContext.state === 'running') {
+                        // 停止当前声音
+                        oscillator.stop();
+                        oscillator.disconnect();
+                        statusDisplay.textContent = '点击按钮体验不同时代的音乐技术';
+                        stopWaveAnimation();
+                        playButton.textContent = '播放演示音乐';
+                        return;
+                    }
+                }
+
+                // 开始新的声音演示
+                currentTechEra = (currentTechEra + 1) % techEras.length;
+                const era = techEras[currentTechEra];
+                statusDisplay.textContent = `正在播放: ${era.name}`;
+                playButton.textContent = '停止播放';
+                startWaveAnimation();
+
+                // 创建音频上下文
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                oscillator = audioContext.createOscillator();
+                gainNode = audioContext.createGain();
+
+                oscillator.type = era.type;
+                oscillator.frequency.setValueAtTime(220, audioContext.currentTime); // A3音
+
+                // 创建简单的包络
+                gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.1);
+                gainNode.gain.linearRampToValueAtTime(0.2, audioContext.currentTime + 0.5);
+
+                // 连接并播放
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                oscillator.start();
+
+                // 5秒后停止
+                setTimeout(() => {
+                    gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 1);
+                    oscillator.stop(audioContext.currentTime + 1);
+                    setTimeout(() => {
+                        statusDisplay.textContent = '点击按钮体验不同时代的音乐技术';
+                        stopWaveAnimation();
+                        playButton.textContent = '播放演示音乐';
+                    }, 1000);
+                }, 5000);
+            });
+        });
+    </script>
+
+    <style>
+        /* 音乐可视化样式 */
+        .music-visualization {
+            background-color: rgba(33, 37, 41, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wave-bar { transition: all 0.2s ease; }
+
+        /* 技术卡片样式 */
+        .tech-card {
+            background-color: rgba(33, 37, 41, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #e74c3c;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            background-color: rgba(33, 37, 41, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .tech-card h3 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        /* 音乐演示样式 */
+        .demo-container {
+            background-color: rgba(33, 37, 41, 0.8);
+            border-radius: 10px;
+            padding: 30px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #play-demo {
+            background-color: #e74c3c;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #play-demo:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+
+        #demo-status {
+            color: #ecf0f1;
+            font-style: italic;
+        }
+    </style>
+
     <script src="yinyue.js"></script>
 </body>
 </html>

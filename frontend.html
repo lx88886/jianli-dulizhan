@@ -35,16 +35,280 @@
     <div class="container mt-5">
         <h1 class="section-title">前端 页面</h1>
         <p class="lead">这是前端相关内容的独立页面，您可以在这里添加具体内容。</p>
-        <div class="card mt-4">
-            <div class="card-body">
-                <h5 class="card-title">前端 服务介绍</h5>
-                <p class="card-text">这里可以放置前端相关的服务描述、产品信息或案例展示。</p>
+        <!-- 前端开发科普内容 -->
+        <section class="frontend-intro mt-5">
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title">什么是前端开发？</h2>
+                    <p class="lead">前端开发是创建Web页面或APP等前端界面呈现给用户的过程，通过HTML、CSS及JavaScript以及衍生出来的各种技术、框架、解决方案，来实现互联网产品的用户界面交互<mcreference link="https://m.baike.com/wiki/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/2630974" index="5">5</mcreference>。</p>
+                    <p>前端开发从网页制作演变而来，在Web1.0时代以静态内容呈现为主，随着HTML5、CSS3的应用和移动互联网的发展，现代前端开发更加注重用户体验、交互效果和跨平台兼容性<mcreference link="https://m.baike.com/wiki/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/2630974" index="5">5</mcreference>。</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="frontend-visualization" id="frontend-visualization">
+                        <!-- 前端技术栈可视化将通过JS动态生成 -->
+                        <svg width="100%" height="300" viewBox="0 0 600 300" id="tech-stack-svg">
+                            <g id="stack-container"></g>
+                        </svg>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="frontend-technologies mt-5" data-aos="fade-up">
+            <h2 class="section-title">前端核心技术</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>HTML</h3>
+                        <p>超文本标记语言，用于构建网页的结构，就像人的骨骼，组成网页的整体框架<mcreference link="https://blog.csdn.net/weixin_52655964/article/details/126317365" index="1">1</mcreference>。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>CSS</h3>
+                        <p>层叠样式表，用于描述网页的表现形式，控制布局、颜色和字体等视觉效果<mcreference link="https://blog.csdn.net/weixin_52655964/article/details/126317365" index="1">1</mcreference>。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>JavaScript</h3>
+                        <p>编程语言，用于实现网页的交互功能，从浏览器脚本语言发展为全栈开发语言<mcreference link="http://m.toutiao.com/group/7490262000120070667/" index="4">4</mcreference>。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="frontend-frameworks mt-5" data-aos="fade-up">
+            <h2 class="section-title">主流前端框架</h2>
+            <div class="row mt-4" id="frameworks-container">
+                <!-- 框架卡片将通过JS动态生成 -->
+            </div>
+        </section>
+
+        <section class="frontend-history mt-5" data-aos="fade-up">
+            <h2 class="section-title">前端发展历程</h2>
+            <div class="timeline" id="frontend-timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-items" id="frontend-timeline-items"></div>
+            </div>
+        </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        // 前端技术栈可视化
+        document.addEventListener('DOMContentLoaded', function() {
+            const svg = document.getElementById('tech-stack-svg');
+            const container = document.getElementById('stack-container');
+            const width = 600;
+            const height = 300;
+
+            // 技术栈数据
+            const techStack = [
+                { name: 'HTML', color: '#e34f26', level: 0, y: 80 },
+                { name: 'CSS', color: '#1572b6', level: 1, y: 140 },
+                { name: 'JavaScript', color: '#f7df1e', level: 2, y: 200 },
+                { name: 'React', color: '#61dafb', level: 3, y: 80 },
+                { name: 'Vue', color: '#4fc08d', level: 3, y: 140 },
+                { name: 'Angular', color: '#dd0031', level: 3, y: 200 },
+                { name: 'TypeScript', color: '#007acc', level: 2, y: 260 }
+            ];
+
+            // 绘制技术栈层次
+            const levelWidth = width / 4;
+            techStack.forEach(tech => {
+                const x = 100 + tech.level * levelWidth;
+                const radius = 40;
+
+                // 创建技术节点
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', tech.y);
+                circle.setAttribute('r', 0);
+                circle.setAttribute('fill', tech.color);
+                circle.setAttribute('stroke', '#fff');
+                circle.setAttribute('stroke-width', '2');
+                circle.setAttribute('opacity', '0.8');
+                circle.setAttribute('class', 'tech-node');
+
+                // 创建技术名称
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x);
+                text.setAttribute('y', tech.y);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('dominant-baseline', 'middle');
+                text.setAttribute('fill', '#fff');
+                text.setAttribute('font-weight', 'bold');
+                text.setAttribute('font-size', '12');
+                text.textContent = tech.name;
+                text.setAttribute('opacity', '0');
+
+                container.appendChild(circle);
+                container.appendChild(text);
+
+                // 动画效果
+                setTimeout(() => {
+                    circle.setAttribute('r', radius);
+                    circle.style.transition = 'r 0.5s ease-out';
+                    setTimeout(() => {
+                        text.setAttribute('opacity', '1');
+                        text.style.transition = 'opacity 0.3s ease-out';
+                    }, 300);
+                }, tech.level * 300 + techStack.indexOf(tech) * 100);
+
+                // 连接线
+                if (tech.level > 0) {
+                    const baseTechs = techStack.filter(t => t.level === tech.level - 1);
+                    baseTechs.forEach(baseTech => {
+                        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                        line.setAttribute('x1', 100 + (tech.level - 1) * levelWidth);
+                        line.setAttribute('y1', baseTech.y);
+                        line.setAttribute('x2', 100 + (tech.level - 1) * levelWidth);
+                        line.setAttribute('y2', baseTech.y);
+                        line.setAttribute('stroke', '#ccc');
+                        line.setAttribute('stroke-width', '2');
+                        line.setAttribute('stroke-dasharray', '5,5');
+
+                        container.appendChild(line);
+
+                        // 连接线动画
+                        setTimeout(() => {
+                            line.setAttribute('x2', x);
+                            line.setAttribute('y2', tech.y);
+                            line.style.transition = 'x2 0.8s ease-out, y2 0.8s ease-out';
+                        }, 1000 + tech.level * 300);
+                    });
+                }
+            });
+
+            // 创建框架卡片
+            const frameworksContainer = document.getElementById('frameworks-container');
+            const frameworks = [
+                { name: 'React', year: '2013', author: 'Facebook', desc: '用于构建用户界面的JavaScript库，采用组件化思想' },
+                { name: 'Vue', year: '2014', author: '尤雨溪', desc: '渐进式JavaScript框架，易于上手和集成' },
+                { name: 'Angular', year: '2010', author: 'Google', desc: '基于TypeScript的完整框架，提供丰富的功能集' },
+                { name: 'jQuery', year: '2006', author: 'John Resig', desc: '简化HTML文档操作、事件处理和动画的JavaScript库' },
+                { name: 'Svelte', year: '2016', author: 'Rich Harris', desc: '编译时框架，将代码转换为高效的原生JavaScript' },
+                { name: 'Preact', year: '2015', author: 'Jason Miller', desc: '轻量级React替代方案，API相似但体积更小' }
+            ];
+
+            frameworks.forEach((framework, index) => {
+                const card = document.createElement('div');
+                card.className = 'col-md-4';
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', `${index * 100}`);
+
+                card.innerHTML = `
+                    <div class="framework-card">
+                        <h3>${framework.name}</h3>
+                        <div class="framework-meta">${framework.year} · ${framework.author}</div>
+                        <p>${framework.desc}</p>
+                    </div>
+                `;
+
+                frameworksContainer.appendChild(card);
+            });
+
+            // 创建时间线
+            const timelineItems = document.getElementById('frontend-timeline-items');
+            const timelineData = [
+                { year: '1991', event: '蒂姆·伯纳斯·李创建世界上第一个网站，纯静态页面' },
+                { year: '1995', event: 'Netscape发布JavaScript，赋予网页交互能力' },
+                { year: '1996', event: 'CSS被引入网页开发，实现表现与结构分离' },
+                { year: '2005', event: 'Ajax技术兴起，Google Maps和Gmail引领Web2.0时代' },
+                { year: '2006', event: 'jQuery发布，简化DOM操作和浏览器兼容性处理' },
+                { year: '2010', event: 'AngularJS发布，前端MVC框架开始流行' },
+                { year: '2013', event: 'React发布，引入虚拟DOM和组件化思想' },
+                { year: '2014', event: 'Vue.js发布，渐进式框架逐渐获得广泛关注' },
+                { year: '2015', event: 'ECMAScript 6发布，JavaScript语言迎来重大更新' }
+            ];
+
+            timelineData.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.setAttribute('data-aos', 'fade-up');
+                timelineItem.setAttribute('data-aos-delay', `${index * 100}`);
+
+                timelineItem.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-year">${item.year}</h3>
+                        <p>${item.event}</p>
+                    </div>
+                `;
+
+                timelineItems.appendChild(timelineItem);
+            });
+        });
+    </script>
+
+    <style>
+        /* 前端可视化样式 */
+        .frontend-visualization {
+            background-color: rgba(33, 37, 41, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tech-node { cursor: pointer; transition: all 0.3s ease; }
+        .tech-node:hover { transform: scale(1.1); opacity: 1; }
+
+        /* 技术卡片样式 */
+        .tech-card {
+            background-color: rgba(33, 37, 41, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #1572b6;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            background-color: rgba(33, 37, 41, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .tech-card h3 {
+            color: #1572b6;
+            margin-bottom: 10px;
+        }
+
+        /* 框架卡片样式 */
+        .framework-card {
+            background-color: rgba(33, 37, 41, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            height: 100%;
+            transition: all 0.3s ease;
+            border-top: 4px solid #61dafb;
+        }
+
+        .framework-card:hover {
+            background-color: rgba(33, 37, 41, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .framework-card h3 {
+            color: #61dafb;
+            margin-bottom: 5px;
+        }
+
+        .framework-meta {
+            color: #95a5a6;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+    </style>
+
     <script src="frontend.js"></script>
 </body>
 </html>

@@ -35,16 +35,576 @@
     <div class="container mt-5">
         <h1 class="section-title">变帅 页面</h1>
         <p class="lead">这是变帅相关内容的独立页面，您可以在这里添加具体内容。</p>
-        <div class="card mt-4">
-            <div class="card-body">
-                <h5 class="card-title">变帅 服务介绍</h5>
-                <p class="card-text">这里可以放置变帅相关的服务描述、产品信息或案例展示。</p>
+        <!-- 男性形象管理科普内容 -->
+        <section class="image-management-intro mt-5">
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title">什么是男性形象管理？</h2>
+                    <p class="lead">男性形象管理是通过科学方法对个人外在形象进行系统性塑造和维护，涵盖护肤、发型、穿搭、体态和礼仪等多个维度，旨在提升个人魅力、增强自信并优化社交表现<mcreference link="https://m.renrendoc.com/paper/389225876.html" index="1">1</mcreference>。</p>
+                    <p>在现代社会，良好的个人形象已成为职场竞争力和社交影响力的重要组成部分，它不仅是外在的修饰，更是内在自信与专业素养的直观体现<mcreference link="https://m.renrendoc.com/paper/389225876.html" index="1">1</mcreference>。</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="image-comparison" id="image-comparison">
+                        <!-- 形象管理前后对比动画 -->
+                        <svg width="100%" height="300" viewBox="0 0 600 300" id="comparison-svg">
+                            <g id="comparison-container"></g>
+                        </svg>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="core-areas mt-5" data-aos="fade-up">
+            <h2 class="section-title">形象管理核心领域</h2>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="core-card" data-area="skincare">
+                        <h3>基础护肤与保养</h3>
+                        <p>建立科学的护肤流程，包括清洁、保湿、防晒等基础步骤，解决出油、痘痘、毛孔粗大等常见皮肤问题<mcreference link="https://m.renrendoc.com/paper/389225876.html" index="1">1</mcreference>。</p>
+                        <div class="area-visualization"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="core-card" data-area="hairstyle">
+                        <h3>发型设计与打理</h3>
+                        <p>根据脸型、发质和个人风格选择适合的发型，掌握基础造型技巧和产品使用方法，保持发型整洁有型<mcreference link="https://m.renrendoc.com/paper/389225876.html" index="1">1</mcreference>。</p>
+                        <div class="area-visualization"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="core-card" data-area="dressing">
+                        <h3>服装搭配与风格</h3>
+                        <p>学习色彩搭配原理（建议全身不超过三种颜色）、服装版型选择和场合着装规范，打造符合个人气质的着装风格<mcreference link="http://m.toutiao.com/group/7433084203610259977/" index="3">3</mcreference><mcreference link="https://m.doc88.com/p-67716338099602.html" index="4">4</mcreference>。</p>
+                        <div class="area-visualization"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="core-card" data-area="etiquette">
+                        <h3>言谈举止与礼仪</h3>
+                        <p>培养良好的体态、表情管理和沟通技巧，掌握社交场合的基本礼仪规范，展现自信得体的个人魅力<mcreference link="https://m.renrendoc.com/paper/389225876.html" index="1">1</mcreference>。</p>
+                        <div class="area-visualization"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="development-history mt-5" data-aos="fade-up">
+            <h2 class="section-title">男性形象管理发展历程</h2>
+            <div class="timeline" id="image-timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-items" id="image-timeline-items"></div>
+            </div>
+        </section>
+
+        <section class="practical-tools mt-5" data-aos="fade-up">
+            <h2 class="section-title">实用形象管理工具</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>穿搭颜色搭配助手</h3>
+                    <p class="lead">根据肤色和场合选择合适的服装颜色，提升整体造型的和谐感和专业度<mcreference link="http://m.toutiao.com/group/7433084203610259977/" index="3">3</mcreference>。</p>
+                    <div class="color-picker" id="color-picker">
+                        <!-- 颜色搭配工具将通过JS动态生成 -->
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h3>常见形象误区</h3>
+                    <ul class="mistakes-list">
+                        <li><strong>过度追求潮流</strong>：盲目追随潮流而忽视个人特点</li>
+                        <li><strong>颜色搭配混乱</strong>：全身使用超过三种主色调<mcreference link="http://m.toutiao.com/group/7433084203610259977/" index="3">3</mcreference></li>
+                        <li><strong>忽视个人卫生</strong>：头发油腻、指甲过长等细节问题<mcreference link="http://m.toutiao.com/group/7505402895173452340/" index="5">5</mcreference></li>
+                        <li><strong>着装不合场合</strong>：休闲场合过度正式或正式场合过于随意</li>
+                        <li><strong>错误的身材认知</strong>：选择不适合自己体型的服装版型<mcreference link="https://m.doc88.com/p-67716338099602.html" index="4">4</mcreference></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        // 形象管理前后对比动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const svg = document.getElementById('comparison-svg');
+            const container = document.getElementById('comparison-container');
+            const width = 600;
+            const height = 300;
+
+            // 创建对比背景
+            function createComparisonBackground() {
+                // 左侧：形象管理前
+                const beforeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                beforeGroup.setAttribute('id', 'before-image');
+                beforeGroup.setAttribute('transform', 'translate(0, 0)');
+
+                // 背景
+                const beforeBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                beforeBg.setAttribute('x', 0);
+                beforeBg.setAttribute('y', 0);
+                beforeBg.setAttribute('width', width/2);
+                beforeBg.setAttribute('height', height);
+                beforeBg.setAttribute('fill', '#f5f5f5');
+                beforeGroup.appendChild(beforeBg);
+
+                // 人物轮廓 - 形象管理前
+                const beforeFigure = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                beforeFigure.setAttribute('transform', 'translate(' + width/4 + ', ' + height/2 + ')');
+
+                // 头发 - 凌乱
+                const messyHair = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                messyHair.setAttribute('d', 'M-30,-60 Q-40,-80 -20,-90 Q0,-100 20,-90 Q40,-80 30,-60 Q40,-40 20,-30 Q0,-20 -20,-30 Q-40,-40 -30,-60');
+                messyHair.setAttribute('fill', '#333');
+                beforeFigure.appendChild(messyHair);
+
+                // 脸部
+                const face = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                face.setAttribute('cx', 0);
+                face.setAttribute('cy', -30);
+                face.setAttribute('r', 25);
+                face.setAttribute('fill', '#ffd7b5');
+                beforeFigure.appendChild(face);
+
+                // 身体 - 随意着装
+                const casualBody = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                casualBody.setAttribute('d', 'M-30,0 L-40,50 L40,50 L30,0 Z');
+                casualBody.setAttribute('fill', '#a0a0a0');
+                beforeFigure.appendChild(casualBody);
+
+                // 文字标签
+                const beforeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                beforeText.setAttribute('x', width/4);
+                beforeText.setAttribute('y', height - 20);
+                beforeText.setAttribute('text-anchor', 'middle');
+                beforeText.setAttribute('fill', '#333');
+                beforeText.setAttribute('font-size', '16');
+                beforeText.textContent = '形象管理前';
+                beforeGroup.appendChild(beforeText);
+
+                beforeGroup.appendChild(beforeFigure);
+                container.appendChild(beforeGroup);
+
+                // 右侧：形象管理后
+                const afterGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                afterGroup.setAttribute('id', 'after-image');
+                afterGroup.setAttribute('transform', 'translate(' + width/2 + ', 0)');
+
+                // 背景
+                const afterBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                afterBg.setAttribute('x', 0);
+                afterBg.setAttribute('y', 0);
+                afterBg.setAttribute('width', width/2);
+                afterBg.setAttribute('height', height);
+                afterBg.setAttribute('fill', '#e8f4f8');
+                afterGroup.appendChild(afterBg);
+
+                // 人物轮廓 - 形象管理后
+                const afterFigure = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                afterFigure.setAttribute('transform', 'translate(' + width/4 + ', ' + height/2 + ')');
+
+                // 头发 - 整洁
+                const neatHair = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                neatHair.setAttribute('d', 'M-30,-60 Q-40,-80 -20,-90 Q0,-100 20,-90 Q40,-80 30,-60 Q35,-45 20,-35 Q0,-30 -20,-35 Q-35,-45 -30,-60');
+                neatHair.setAttribute('fill', '#333');
+                afterFigure.appendChild(neatHair);
+
+                // 脸部
+                const neatFace = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                neatFace.setAttribute('cx', 0);
+                neatFace.setAttribute('cy', -30);
+                neatFace.setAttribute('r', 25);
+                neatFace.setAttribute('fill', '#ffd7b5');
+                afterFigure.appendChild(neatFace);
+
+                // 身体 - 正式着装
+                const formalBody = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                formalBody.setAttribute('d', 'M-30,0 L-35,50 L35,50 L30,0 Z');
+                formalBody.setAttribute('fill', '#2980b9');
+                afterFigure.appendChild(formalBody);
+
+                // 领带
+                const tie = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                tie.setAttribute('d', 'M0,0 L-5,20 L5,20 Z');
+                tie.setAttribute('fill', '#e74c3c');
+                afterFigure.appendChild(tie);
+
+                // 文字标签
+                const afterText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                afterText.setAttribute('x', width/4);
+                afterText.setAttribute('y', height - 20);
+                afterText.setAttribute('text-anchor', 'middle');
+                afterText.setAttribute('fill', '#333');
+                afterText.setAttribute('font-size', '16');
+                afterText.textContent = '形象管理后';
+                afterGroup.appendChild(afterText);
+
+                afterGroup.appendChild(afterFigure);
+                container.appendChild(afterGroup);
+
+                // 添加分隔线
+                const divider = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                divider.setAttribute('x1', width/2);
+                divider.setAttribute('y1', 0);
+                divider.setAttribute('x2', width/2);
+                divider.setAttribute('y2', height);
+                divider.setAttribute('stroke', '#333');
+                divider.setAttribute('stroke-width', 2);
+                container.appendChild(divider);
+
+                // 添加对比控制器
+                const controller = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                controller.setAttribute('cx', width/2);
+                controller.setAttribute('cy', height/2);
+                controller.setAttribute('r', 10);
+                controller.setAttribute('fill', '#333');
+                controller.setAttribute('id', 'comparison-controller');
+                container.appendChild(controller);
+            }
+
+            // 初始化对比图
+            createComparisonBackground();
+
+            // 创建核心领域可视化
+            createAreaVisualizations();
+
+            // 创建时间线
+            const timelineItems = document.getElementById('image-timeline-items');
+            const timelineData = [
+                { year: '传统时期', event: '男性形象管理不受重视，"不修边幅"被视为男性气质的体现<mcreference link="https://m.hupu.com/bbs/631273674.html" index="2">2</mcreference>' },
+                { year: '20世纪80年代', event: '随着经济发展，职场对男性着装要求开始提高，西装成为正式场合标配' },
+                { year: '21世纪初', event: '男性护肤意识觉醒，基础护肤品市场开始发展，发型设计受到重视' },
+                { year: '2010年后', event: '社交媒体兴起推动男性形象管理多元化，个人风格塑造成为主流<mcreference link="https://m.renrendoc.com/paper/389225876.html" index="1">1</mcreference>' },
+                { year: '当前趋势', event: '形象管理成为男性自我提升的重要组成部分，注重内外兼修和个性化表达' }
+            ];
+
+            timelineData.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.setAttribute('data-aos', 'fade-up');
+                timelineItem.setAttribute('data-aos-delay', `${index * 100}`);
+
+                timelineItem.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-year">${item.year}</h3>
+                        <p>${item.event}</p>
+                    </div>
+                `;
+
+                timelineItems.appendChild(timelineItem);
+            });
+
+            // 创建颜色搭配工具
+            createColorPicker();
+
+            // 创建核心领域可视化图形
+            function createAreaVisualizations() {
+                // 护肤可视化
+                const skincareViz = document.querySelector('[data-area="skincare"] .area-visualization');
+                skincareViz.innerHTML = `
+                    <svg width="100%" height="80" viewBox="0 0 200 80">
+                        <circle cx="40" cy="40" r="25" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+                        <circle cx="90" cy="40" r="20" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+                        <circle cx="140" cy="40" r="15" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+                        <circle cx="175" cy="40" r="10" fill="#ffebee" stroke="#f44336" stroke-width="2"/>
+                        <text x="40" y="45" text-anchor="middle" font-size="10">清洁</text>
+                        <text x="90" y="45" text-anchor="middle" font-size="10">保湿</text>
+                        <text x="140" y="45" text-anchor="middle" font-size="10">防晒</text>
+                        <text x="175" y="45" text-anchor="middle" font-size="10">修护</text>
+                    </svg>
+                `;
+
+                // 发型可视化
+                const hairstyleViz = document.querySelector('[data-area="hairstyle"] .area-visualization');
+                hairstyleViz.innerHTML = `
+                    <svg width="100%" height="80" viewBox="0 0 200 80">
+                        <g transform="translate(40, 40)">
+                            <path d="M-20,-30 Q-30,-50 -10,-55 Q10,-60 20,-55 Q30,-50 10,-30 Q0,-20 -10,-30 Z" fill="#333"/>
+                            <circle cx="0" cy="-20" r="15" fill="#ffd7b5"/>
+                        </g>
+                        <g transform="translate(100, 40)">
+                            <path d="M-20,-30 Q-30,-45 -15,-50 Q0,-55 15,-50 Q30,-45 20,-30 Q25,-15 0,-10 Q-25,-15 -20,-30 Z" fill="#333"/>
+                            <circle cx="0" cy="-20" r="15" fill="#ffd7b5"/>
+                        </g>
+                        <g transform="translate(160, 40)">
+                            <path d="M-20,-30 Q-25,-40 -15,-45 Q0,-50 15,-45 Q25,-40 20,-30 Q20,-15 0,-10 Q-20,-15 -20,-30 Z" fill="#333"/>
+                            <circle cx="0" cy="-20" r="15" fill="#ffd7b5"/>
+                        </g>
+                    </svg>
+                `;
+
+                // 穿搭可视化
+                const dressingViz = document.querySelector('[data-area="dressing"] .area-visualization');
+                dressingViz.innerHTML = `
+                    <svg width="100%" height="80" viewBox="0 0 200 80">
+                        <rect x="30" y="20" width="40" height="50" rx="5" fill="#2c3e50"/>
+                        <rect x="80" y="20" width="40" height="50" rx="5" fill="#3498db"/>
+                        <rect x="130" y="20" width="40" height="50" rx="5" fill="#ecf0f1"/>
+                        <text x="50" y="45" text-anchor="middle" fill="white" font-size="12">主色</text>
+                        <text x="100" y="45" text-anchor="middle" fill="white" font-size="12">辅助色</text>
+                        <text x="150" y="45" text-anchor="middle" fill="#333" font-size="12">点缀色</text>
+                    </svg>
+                `;
+
+                // 礼仪可视化
+                const etiquetteViz = document.querySelector('[data-area="etiquette"] .area-visualization');
+                etiquetteViz.innerHTML = `
+                    <svg width="100%" height="80" viewBox="0 0 200 80">
+                        <g transform="translate(50, 50)">
+                            <path d="M0,-30 L-15,10 L15,10 Z" fill="#3498db"/>
+                            <circle cx="0" cy="-35" r="15" fill="#ffd7b5"/>
+                            <line x1="0" y1="-20" x2="0" y2="-30" stroke="#333" stroke-width="1"/>
+                        </g>
+                        <g transform="translate(100, 50)">
+                            <path d="M0,-30 L-15,10 L15,10 Z" fill="#3498db"/>
+                            <circle cx="0" cy="-35" r="15" fill="#ffd7b5"/>
+                            <line x1="-5" y1="-25" x2="5" y2="-25" stroke="#333" stroke-width="1"/>
+                        </g>
+                        <g transform="translate(150, 50)">
+                            <path d="M0,-30 L-15,10 L15,10 Z" fill="#3498db"/>
+                            <circle cx="0" cy="-35" r="15" fill="#ffd7b5"/>
+                            <path d="M-5,-25 Q0,-20 5,-25" stroke="#333" stroke-width="1" fill="none"/>
+                        </g>
+                    </svg>
+                `;
+            }
+
+            // 创建颜色搭配工具
+            function createColorPicker() {
+                const colorPicker = document.getElementById('color-picker');
+                const baseColors = [
+                    { name: '黑色', code: '#000000', type: 'base' },
+                    { name: '白色', code: '#FFFFFF', type: 'base', stroke: '#dddddd' },
+                    { name: '灰色', code: '#888888', type: 'base' },
+                    { name: '海军蓝', code: '#1a365d', type: 'advanced' },
+                    { name: '军绿色', code: '#336633', type: 'advanced' },
+                    { name: '卡其色', code: '#c2b280', type: 'advanced' }
+                ];
+
+                // 创建基础色选择区
+                const baseColorsDiv = document.createElement('div');
+                baseColorsDiv.className = 'color-section';
+                baseColorsDiv.innerHTML = '<h4>基础色</h4><div class="color-options" id="base-colors"></div>';
+                colorPicker.appendChild(baseColorsDiv);
+
+                // 创建进阶色选择区
+                const advancedColorsDiv = document.createElement('div');
+                advancedColorsDiv.className = 'color-section';
+                advancedColorsDiv.innerHTML = '<h4>进阶色</h4><div class="color-options" id="advanced-colors"></div>';
+                colorPicker.appendChild(advancedColorsDiv);
+
+                // 创建搭配结果区
+                const resultDiv = document.createElement('div');
+                resultDiv.className = 'color-result';
+                resultDiv.innerHTML = '<h4>当前搭配</h4><div class="selected-colors" id="selected-colors"></div><div id="搭配建议" class="color-suggestion"></div>';
+                colorPicker.appendChild(resultDiv);
+
+                // 添加颜色选项
+                const baseColorsContainer = document.getElementById('base-colors');
+                const advancedColorsContainer = document.getElementById('advanced-colors');
+                const selectedColorsContainer = document.getElementById('selected-colors');
+                const suggestionDiv = document.getElementById('搭配建议');
+                const selectedColors = [];
+
+                baseColors.forEach(color => {
+                    const colorOption = document.createElement('div');
+                    colorOption.className = 'color-option';
+                    colorOption.style.backgroundColor = color.code;
+                    if (color.stroke) colorOption.style.borderColor = color.stroke;
+                    colorOption.title = color.name;
+
+                    colorOption.addEventListener('click', function() {
+                        if (selectedColors.length < 3) {
+                            // 检查是否已选择
+                            const existingIndex = selectedColors.findIndex(c => c.name === color.name);
+                            if (existingIndex === -1) {
+                                selectedColors.push(color);
+                                updateSelectedColors();
+                            }
+                        }
+                    });
+
+                    if (color.type === 'base') {
+                        baseColorsContainer.appendChild(colorOption);
+                    } else {
+                        advancedColorsContainer.appendChild(colorOption);
+                    }
+                });
+
+                // 更新已选颜色
+                function updateSelectedColors() {
+                    selectedColorsContainer.innerHTML = '';
+                    selectedColors.forEach((color, index) => {
+                        const colorDiv = document.createElement('div');
+                        colorDiv.className = 'selected-color';
+                        colorDiv.style.backgroundColor = color.code;
+                        if (color.stroke) colorDiv.style.borderColor = color.stroke;
+                        colorDiv.title = color.name;
+
+                        const removeBtn = document.createElement('span');
+                        removeBtn.className = 'remove-color';
+                        removeBtn.textContent = '×';
+                        removeBtn.addEventListener('click', function() {
+                            selectedColors.splice(index, 1);
+                            updateSelectedColors();
+                        });
+
+                        colorDiv.appendChild(removeBtn);
+                        selectedColorsContainer.appendChild(colorDiv);
+                    });
+
+                    // 更新搭配建议
+                    updateSuggestion();
+                }
+
+                // 更新搭配建议
+                function updateSuggestion() {
+                    if (selectedColors.length === 0) {
+                        suggestionDiv.textContent = '请选择颜色进行搭配';
+                    } else if (selectedColors.length === 1) {
+                        suggestionDiv.textContent = `单一${selectedColors[0].name}适合简约风格，可以添加其他颜色丰富层次`;
+                    } else if (selectedColors.length === 2) {
+                        suggestionDiv.textContent = `${selectedColors[0].name}和${selectedColors[1].name}的搭配经典大方，适合大多数场合`;
+                    } else {
+                        suggestionDiv.textContent = `三种颜色搭配已完成，建议以${selectedColors[0].name}为主色，其他为辅助色和点缀色`;
+                    }
+                }
+            }
+        });
+    </script>
+
+    <style>
+        /* 形象对比样式 */
+        .image-comparison {
+            background-color: rgba(33, 37, 41, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 核心领域卡片样式 */
+        .core-card {
+            background-color: rgba(33, 37, 41, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .core-card:hover {
+            background-color: rgba(33, 37, 41, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .core-card h3 {
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .area-visualization {
+            margin-top: 15px;
+            height: 80px;
+            background-color: rgba(44, 62, 80, 0.5);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 颜色搭配工具样式 */
+        .color-picker {
+            background-color: rgba(33, 37, 41, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .color-section {
+            margin-bottom: 15px;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .selected-colors {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .selected-color {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .remove-color {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #e74c3c;
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .color-result {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .color-suggestion {
+            margin-top: 10px;
+            color: #ecf0f1;
+            font-size: 14px;
+        }
+
+        /* 常见误区列表样式 */
+        .mistakes-list {
+            background-color: rgba(33, 37, 41, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            color: #ecf0f1;
+        }
+
+        .mistakes-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .mistakes-list li:before {
+            content: '•';
+            color: #e74c3c;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+
     <script src="bianshuai.js"></script>
 </body>
 </html>

@@ -35,16 +35,216 @@
     <div class="container mt-5">
         <h1 class="section-title">AI 页面</h1>
         <p class="lead">这是AI相关内容的独立页面，您可以在这里添加具体内容。</p>
-        <div class="card mt-4">
-            <div class="card-body">
-                <h5 class="card-title">AI 服务介绍</h5>
-                <p class="card-text">这里可以放置AI相关的服务描述、产品信息或案例展示。</p>
+        <!-- AI科普内容 -->
+        <section class="ai-intro mt-5">
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title">什么是人工智能？</h2>
+                    <p class="lead">人工智能(AI)是让机器模拟人类智能行为的技术，使计算机能够执行通常需要人类智能才能完成的任务，如学习、推理、解决问题和理解语言<mcreference link="http://m.toutiao.com/group/7482704511334416905/" index="3">3</mcreference>。</p>
+                    <p>从技术角度，人工智能可分为符号主义、连接主义和混合智能三大流派。符号主义通过规则和逻辑模拟人类思维，连接主义模拟人脑神经网络结构，而混合智能则结合两者优势，成为当前主流发展方向<mcreference link="https://m.sensorexpert.com.cn/article/186161.html" index="1">1</mcreference>。</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="ai-visualization" id="ai-visualization">
+                        <!-- 神经网络可视化将通过JS动态生成 -->
+                        <svg width="100%" height="300" viewBox="0 0 600 300" id="neural-network-svg">
+                            <g id="network-container"></g>
+                        </svg>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="ai-technologies mt-5" data-aos="fade-up">
+            <h2 class="section-title">AI核心技术</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>机器学习</h3>
+                        <p>让计算机通过数据训练自动改进的技术，包括监督学习、无监督学习和强化学习等方法。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>深度学习</h3>
+                        <p>基于多层神经网络的高级算法，能处理复杂数据和任务，如卷积神经网络(CNN)和循环神经网络(RNN)<mcreference link="http://m.toutiao.com/group/7482704511334416905/" index="3">3</mcreference>。</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <h3>自然语言处理</h3>
+                        <p>使计算机理解、解释和生成人类语言的技术，应用于机器翻译、智能客服和情感分析等领域<mcreference link="https://m.sensorexpert.com.cn/article/186161.html" index="1">1</mcreference>。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="ai-history mt-5" data-aos="fade-up">
+            <h2 class="section-title">人工智能发展历程</h2>
+            <div class="timeline" id="ai-timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-items" id="ai-timeline-items"></div>
+            </div>
+        </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        // 神经网络可视化
+        document.addEventListener('DOMContentLoaded', function() {
+            const svg = document.getElementById('neural-network-svg');
+            const container = document.getElementById('network-container');
+            const width = 600;
+            const height = 300;
+            const layerCount = 3; // 输入、隐藏、输出层
+            const nodesPerLayer = [5, 8, 3]; // 每层节点数
+            const layerSpacing = width / (layerCount + 1);
+            const nodeRadius = 15;
+            const nodes = [];
+
+            // 创建节点
+            for (let layer = 0; layer < layerCount; layer++) {
+                const layerX = layerSpacing * (layer + 1);
+                const layerNodes = nodesPerLayer[layer];
+                const layerYSpacing = height / (layerNodes + 1);
+
+                for (let i = 0; i < layerNodes; i++) {
+                    const nodeY = layerYSpacing * (i + 1);
+                    const node = {
+                        id: `node-${layer}-${i}`,
+                        x: layerX,
+                        y: nodeY,
+                        layer: layer
+                    };
+                    nodes.push(node);
+
+                    // 创建节点元素
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', nodeX);
+                    circle.setAttribute('cy', nodeY);
+                    circle.setAttribute('r', nodeRadius);
+                    circle.setAttribute('fill', '#3498db');
+                    circle.setAttribute('stroke', '#2980b9');
+                    circle.setAttribute('stroke-width', '2');
+                    circle.setAttribute('opacity', '0');
+                    circle.setAttribute('class', 'neural-node');
+
+                    container.appendChild(circle);
+
+                    // 节点动画
+                    setTimeout(() => {
+                        circle.setAttribute('opacity', '1');
+                        circle.setAttribute('r', nodeRadius);
+                        circle.style.transition = 'all 0.5s ease-out';
+                    }, layer * 500 + i * 100);
+                }
+            }
+
+            // 创建连接线
+            function createConnections() {
+                for (let i = 0; i < nodes.length; i++) {
+                    const node = nodes[i];
+                    if (node.layer < layerCount - 1) {
+                        // 连接到下一层所有节点
+                        const nextLayerNodes = nodes.filter(n => n.layer === node.layer + 1);
+                        nextLayerNodes.forEach(targetNode => {
+                            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                            line.setAttribute('x1', node.x);
+                            line.setAttribute('y1', node.y);
+                            line.setAttribute('x2', node.x);
+                            line.setAttribute('y2', node.y);
+                            line.setAttribute('stroke', '#95a5a6');
+                            line.setAttribute('stroke-width', '1');
+                            line.setAttribute('class', 'neural-connection');
+
+                            container.appendChild(line);
+
+                            // 连接线动画
+                            setTimeout(() => {
+                                line.setAttribute('x2', targetNode.x);
+                                line.setAttribute('y2', targetNode.y);
+                                line.style.transition = 'all 0.8s ease-out';
+                            }, 1500 + node.layer * 1000);
+                        });
+                    }
+                }
+            }
+
+            // 创建时间线
+            function createTimeline() {
+                const timelineItems = document.getElementById('ai-timeline-items');
+                const timelineData = [
+                    { year: '1950', event: '艾伦·图灵提出"图灵测试"，探讨机器智能的判定标准' },
+                    { year: '1956', event: '达特茅斯会议召开，约翰·麦卡锡首次提出"人工智能"术语' },
+                    { year: '1966', event: 'ELIZA聊天机器人出现，通过模式匹配模拟对话' },
+                    { year: '1980s', event: '专家系统兴起，MYCIN医疗诊断系统等投入应用' },
+                    { year: '1997', event: 'IBM深蓝击败国际象棋世界冠军卡斯帕罗夫' },
+                    { year: '2012', event: '深度学习取得突破，AlexNet在ImageNet竞赛中夺冠' },
+                    { year: '2022', event: 'ChatGPT发布，自然语言处理能力引发广泛关注' }
+                ];
+
+                timelineData.forEach((item, index) => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = 'timeline-item';
+                    timelineItem.setAttribute('data-aos', 'fade-up');
+                    timelineItem.setAttribute('data-aos-delay', `${index * 100}`);
+
+                    timelineItem.innerHTML = `
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-year">${item.year}</h3>
+                            <p>${item.event}</p>
+                        </div>
+                    `;
+
+                    timelineItems.appendChild(timelineItem);
+                });
+            }
+
+            // 初始化
+            createConnections();
+            createTimeline();
+        });
+    </script>
+
+    <style>
+        /* AI可视化样式 */
+        .ai-visualization {
+            background-color: rgba(33, 37, 41, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .neural-node { cursor: pointer; transition: all 0.3s ease; }
+        .neural-node:hover { fill: #ffc107; transform: scale(1.1); }
+        .neural-connection { opacity: 0.6; }
+
+        /* 技术卡片样式 */
+        .tech-card {
+            background-color: rgba(33, 37, 41, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            background-color: rgba(33, 37, 41, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .tech-card h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+    </style>
+
     <script src="ai.js"></script>
 </body>
 </html>
