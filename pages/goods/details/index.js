@@ -217,17 +217,6 @@ Page({
 
   addCart() {
     const { isAllSelectedSku } = this.data;
-    Toast({
-      context: this,
-      selector: '#t-toast',
-      message: isAllSelectedSku ? '点击加入购物车' : '请选择规格',
-      icon: '',
-      duration: 1000,
-    });
-  },
-
-  gotoBuy(type) {
-    const { isAllSelectedSku, buyNum } = this.data;
     if (!isAllSelectedSku) {
       Toast({
         context: this,
@@ -238,42 +227,69 @@ Page({
       });
       return;
     }
-    this.handlePopupHide();
-    const query = {
-      quantity: buyNum,
-      storeId: '1',
-      spuId: this.data.spuId,
-      goodsName: this.data.details.title,
-      skuId: type === 1 ? this.data.skuList[0].skuId : this.data.selectItem.skuId,
-      available: this.data.details.available,
-      price: this.data.details.minSalePrice,
-      specInfo: this.data.details.specList?.map((item) => ({
-        specTitle: item.title,
-        specValue: item.specValueList[0].specValue,
-      })),
-      primaryImage: this.data.details.primaryImage,
-      spuId: this.data.details.spuId,
-      thumb: this.data.details.primaryImage,
-      title: this.data.details.title,
-    };
-    let urlQueryStr = obj2Params({
-      goodsRequestList: JSON.stringify([query]),
+    
+    Toast({
+      context: this,
+      selector: '#t-toast',
+      message: '加入购物车成功',
+      icon: 'check-circle',
+      duration: 1000,
     });
-    urlQueryStr = urlQueryStr ? `?${urlQueryStr}` : '';
-    const path = `/pages/order/order-confirm/index${urlQueryStr}`;
-    wx.navigateTo({
-      url: path,
+    
+    // 获取当前选择的商品信息
+    const { buyNum, skuArray, selectItem, spuId, details } = this.data;
+    const skuId = selectItem ? selectItem.skuId : skuArray[0].skuId;
+    // 如果没有 selectItem (比如只有一个规格或默认规格), 尝试从 skuArray 获取
+    const currentSku = selectItem || skuArray.find(s => s.skuId === skuId) || skuArray[0];
+    
+    const cartItem = {
+        spuId: spuId,
+        skuId: skuId,
+        thumb: details.primaryImage,
+        title: details.title,
+        primaryImage: details.primaryImage,
+        quantity: buyNum,
+        stockQuantity: currentSku.quantity, // 库存
+        stockStatus: currentSku.quantity > 0,
+        price: 0, // 价格已移除
+        originPrice: 0,
+        specInfo: currentSku.specInfo || [],
+        isSelected: 1,
+        storeId: '1000', // 默认门店ID
+    };
+
+    // 读取本地购物车数据
+    let cartList = wx.getStorageSync('cartList') || [];
+    
+    // 检查是否已存在该商品
+    const existingIndex = cartList.findIndex(item => item.spuId === cartItem.spuId && item.skuId === cartItem.skuId);
+    
+    if (existingIndex > -1) {
+        // 更新数量
+        cartList[existingIndex].quantity += buyNum;
+        // 确保不超过库存
+        if (cartList[existingIndex].quantity > cartList[existingIndex].stockQuantity) {
+            cartList[existingIndex].quantity = cartList[existingIndex].stockQuantity;
+        }
+    } else {
+        // 新增
+        cartList.push(cartItem);
+    }
+    
+    // 保存回本地存储
+    wx.setStorageSync('cartList', cartList);
+
+    this.handlePopupHide();
+    
+    // 增加购物车数量显示（模拟）
+    this.setData({
+      cartNum: this.data.cartNum + this.data.buyNum
     });
   },
 
   specsConfirm() {
-    const { buyType } = this.data;
-    if (buyType === 1) {
-      this.gotoBuy();
-    } else {
-      this.addCart();
-    }
-    // this.handlePopupHide();
+    // 统一只执行加入购物车逻辑
+    this.addCart();
   },
 
   changeNum(e) {

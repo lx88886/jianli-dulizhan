@@ -1,0 +1,12 @@
+.admin-container {
+  padding: 20rpx;
+}
+.action-area {
+  margin-top: 40rpx;
+}
+.desc {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+  margin-top: 20rpx;
+}

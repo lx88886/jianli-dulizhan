@@ -43,15 +43,15 @@ export function genSettleDetail(params) {
     data: {
       settleType: 0,
       userAddress: null,
-      totalGoodsCount: 3,
+      totalGoodsCount: goodsRequestList.reduce((acc, item) => acc + item.quantity, 0),
       packageCount: 1,
-      totalAmount: '289997',
-      totalPayAmount: '',
-      totalDiscountAmount: '110000',
-      totalPromotionAmount: '1100',
+      totalAmount: '0',
+      totalPayAmount: '0',
+      totalDiscountAmount: '0',
+      totalPromotionAmount: '0',
       totalCouponAmount: '0',
-      totalSalePrice: '289997',
-      totalGoodsAmount: '289997',
+      totalSalePrice: '0',
+      totalGoodsAmount: '0',
       totalDeliveryFee: '0',
       invoiceRequest: null,
       skuImages: null,
@@ -65,8 +65,8 @@ export function genSettleDetail(params) {
           deliveryFee: '0',
           deliveryWords: null,
           storeTotalAmount: '0',
-          storeTotalPayAmount: '179997',
-          storeTotalDiscountAmount: '110000',
+          storeTotalPayAmount: '0',
+          storeTotalDiscountAmount: '0',
           storeTotalCouponAmount: '0',
           skuDetailVos: [],
           couponList: [
@@ -110,8 +110,8 @@ export function genSettleDetail(params) {
     });
   }
 
-  // 模拟计算场景
-
+  // 模拟计算场景 (Disabled for stock-only mode)
+  /*
   // 计算总价
   const totalPrice = list.reduce((pre, cur) => {
     return pre + cur.quantity * Number(cur.settlePrice);
@@ -138,7 +138,8 @@ export function genSettleDetail(params) {
 
   resp.data.totalPayAmount =
     totalPrice - totalDiscountPrice - Number(resp.data.totalPromotionAmount);
-
+  */
+  
   if (userAddressReq) {
     resp.data.settleType = 1;
     resp.data.userAddress = userAddressReq;

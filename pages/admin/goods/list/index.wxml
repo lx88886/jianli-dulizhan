@@ -1,0 +1,23 @@
+<view class="goods-list-container">
+  <view class="goods-card" wx:for="{{goodsList}}" wx:key="_id">
+    <t-image src="{{item.primaryImage}}" width="160rpx" height="160rpx" mode="aspectFill" class="goods-img" />
+    <view class="goods-info">
+      <view class="goods-title">{{item.title}}</view>
+      <view class="goods-price">¥{{item.minSalePrice / 100}}</view>
+      <view class="goods-status">
+        <t-tag theme="{{item.isPutOnSale ? 'success' : 'default'}}" variant="light">
+          {{item.isPutOnSale ? '上架中' : '已下架'}}
+        </t-tag>
+      </view>
+    </view>
+    <view class="goods-actions">
+      <t-button size="small" variant="text" data-id="{{item._id}}" bind:tap="onEdit">编辑</t-button>
+      <t-button size="small" variant="text" theme="{{item.isPutOnSale ? 'danger' : 'primary'}}" data-id="{{item._id}}" data-status="{{item.isPutOnSale}}" bind:tap="onToggleStatus">
+        {{item.isPutOnSale ? '下架' : '上架'}}
+      </t-button>
+    </view>
+  </view>
+
+  <t-fab icon="add" bind:click="onAdd" aria-label="增加" style="right: 32rpx; bottom: 64rpx;" />
+  <t-toast id="t-toast" />
+</view>

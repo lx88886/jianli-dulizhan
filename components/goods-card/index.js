@@ -31,6 +31,11 @@ Component({
       type: String,
       value: '¥',
     },
+    
+    layout: {
+      type: String,
+      value: 'vertical',
+    },
 
     thresholds: {
       type: Array,

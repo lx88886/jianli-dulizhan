@@ -31,6 +31,13 @@
   line-height: 88rpx;
 }
 
+.order-sure .wx-pay-cover .wx-pay .total-count {
+  color: #fa4126;
+  font-weight: bold;
+  font-size: 36rpx;
+  line-height: 88rpx;
+}
+
 .order-sure .wx-pay-cover .wx-pay .submit-btn {
   height: 80rpx;
   width: 240rpx;
@@ -114,6 +121,9 @@
 
 .goods-right .goods-num {
   text-align: right;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
 }
 
 .order-sure .pay-detail {

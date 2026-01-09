@@ -60,23 +60,8 @@
         </view>
       </view>
     </view>
-    <view wx:if="{{outOperateStatus}}" class="single-confirm-btn {{!isStock ? 'disabled' : ''}}" bindtap="specsConfirm">
+    <view class="single-confirm-btn {{!isStock ? 'disabled' : ''}}" bindtap="specsConfirm">
       确定
-    </view>
-    <view
-      class="popup-sku-actions flex flex-between {{!isStock ? 'popup-sku-disabled' : ''}}"
-      wx:if="{{!outOperateStatus}}"
-    >
-      <view class="sku-operate">
-        <view class="selected-sku-btn sku-operate-addCart {{!isStock ? 'disabled' : ''}}" bindtap="addCart">
-          加入购物车
-        </view>
-      </view>
-      <view class="sku-operate">
-        <view class="selected-sku-btn sku-operate-buyNow  {{!isStock ? 'disabled' : ''}}" bindtap="buyNow">
-          立即购买
-        </view>
-      </view>
     </view>
     <slot name="bottomSlot" />
   </view>

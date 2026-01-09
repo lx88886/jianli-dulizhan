@@ -1,0 +1,17 @@
+.edit-container {
+  padding: 20rpx;
+  background: #fff;
+}
+.upload-wrapper {
+  padding: 32rpx;
+  background-color: #fff;
+}
+.label {
+  font-size: 32rpx;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 16rpx;
+}
+.submit-btn {
+  margin-top: 40rpx;
+  padding: 0 32rpx;
+}

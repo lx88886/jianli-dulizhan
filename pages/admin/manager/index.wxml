@@ -1,0 +1,13 @@
+<view class="admin-container">
+  <t-cell-group title="商品管理">
+    <t-cell title="商品列表" arrow url="/pages/admin/goods/list/index" />
+    <t-cell title="新增商品" arrow url="/pages/admin/goods/edit/index" />
+  </t-cell-group>
+
+  <view class="action-area">
+    <t-button block theme="light" bind:tap="initData">初始化/重置 云端数据</t-button>
+    <view class="desc">将本地模拟数据上传至云开发数据库(需先开通云开发)</view>
+  </view>
+  
+  <t-toast id="t-toast" />
+</view>

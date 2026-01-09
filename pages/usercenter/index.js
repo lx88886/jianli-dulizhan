@@ -36,6 +36,13 @@ const menuData = [
       type: 'service',
       icon: 'service',
     },
+    {
+      title: '商家管理',
+      tit: '',
+      url: '',
+      type: 'admin-manager',
+      icon: 'app',
+    },
   ],
 ];
 
@@ -171,6 +178,10 @@ Page({
       }
       case 'coupon': {
         wx.navigateTo({ url: '/pages/coupon/coupon-list/index' });
+        break;
+      }
+      case 'admin-manager': {
+        wx.navigateTo({ url: '/pages/admin/manager/index' });
         break;
       }
       default: {

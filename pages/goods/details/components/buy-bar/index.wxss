@@ -89,6 +89,17 @@
   border-radius: 0rpx 40rpx 40rpx 0rpx;
 }
 
+.bar-buy-now {
+  width: 508rpx;
+  height: 80rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fa4126;
+  border-radius: 40rpx;
+}
+
 .flex {
   display: flex;
   display: -webkit-flex;

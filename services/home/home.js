@@ -9,31 +9,31 @@ function mockFetchHome() {
       swiper: genSwiperImageList(),
       tabList: [
         {
-          text: '精选推荐',
+          text: '小鹏',
           key: 0,
         },
         {
-          text: '夏日防晒',
+          text: 'B5',
           key: 1,
         },
         {
-          text: '二胎大作战',
+          text: '福美来',
           key: 2,
         },
         {
-          text: '人气榜',
+          text: '3000',
           key: 3,
         },
         {
-          text: '好评榜',
+          text: '娇子',
           key: 4,
         },
         {
-          text: 'RTX 30',
+          text: '2000',
           key: 5,
         },
         {
-          text: '手机也疯狂',
+          text: 'STN',
           key: 6,
         },
       ],

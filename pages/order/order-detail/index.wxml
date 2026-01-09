@@ -74,45 +74,7 @@
       </order-goods-card>
       <view class="pay-detail">
         <view class="pay-item">
-          <text>商品总额</text>
-          <price fill decimalSmaller wr-class="pay-item__right font-bold" price="{{order.totalAmount || '0'}}" />
-        </view>
-        <view class="pay-item">
-          <text>运费</text>
-          <view class="pay-item__right font-bold">
-            <block wx:if="{{order.freightFee}}">
-              +
-              <price fill decimalSmaller price="{{order.freightFee}}" />
-            </block>
-            <text wx:else>免运费</text>
-          </view>
-        </view>
-        <view class="pay-item">
-          <text>活动优惠</text>
-          <view class="pay-item__right primary font-bold">
-            -
-            <price fill price="{{order.discountAmount || 0}}" />
-          </view>
-        </view>
-        <view class="pay-item">
-          <text>优惠券</text>
-          <view class="pay-item__right" catchtap="onOpenCoupons">
-            <block wx:if="{{order.couponAmount}}">
-              -
-              <price fill decimalSmaller price="{{order.couponAmount}}" />
-            </block>
-            <text wx:else>无可用</text>
-            <!-- <t-icon name="chevron-right" size="32rpx" color="#BBBBBB" /> -->
-          </view>
-        </view>
-        <view class="pay-item">
-          <text>{{isPaid ? '实付' : '应付'}}</text>
-          <price
-            fill
-            decimalSmaller
-            wr-class="pay-item__right font-bold primary max-size"
-            price="{{order.paymentAmount || '0'}}"
-          />
+          <text>共{{_order.goodsList.length}}件商品</text>
         </view>
       </view>
     </order-card>

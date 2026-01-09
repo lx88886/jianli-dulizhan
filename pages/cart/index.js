@@ -10,10 +10,11 @@ Page({
   // 调用自定义tabbar的init函数，使页面与tabbar激活状态保持一致
   onShow() {
     this.getTabBar().init();
+    this.refreshData();
   },
 
   onLoad() {
-    this.refreshData();
+    // this.refreshData(); // Moved to onShow
   },
 
   refreshData() {
@@ -95,74 +96,57 @@ Page({
 
   // 注：实际场景时应该调用接口获取购物车数据
   getCartGroupData() {
-    const { cartGroupData } = this.data;
-    if (!cartGroupData) {
-      return fetchCartGroupData();
-    }
-    return Promise.resolve({ data: cartGroupData });
+    return fetchCartGroupData();
   },
 
   // 选择单个商品
-  // 注：实际场景时应该调用接口更改选中状态
   selectGoodsService({ spuId, skuId, isSelected }) {
-    this.findGoods(spuId, skuId).currentGoods.isSelected = isSelected;
+    const cartList = wx.getStorageSync('cartList') || [];
+    const item = cartList.find(i => i.spuId === spuId && i.skuId === skuId);
+    if (item) {
+        item.isSelected = isSelected ? 1 : 0; // Use 1/0 for boolean consistency if needed, or just boolean
+        wx.setStorageSync('cartList', cartList);
+    }
     return Promise.resolve();
   },
 
   // 全选门店
-  // 注：实际场景时应该调用接口更改选中状态
   selectStoreService({ storeId, isSelected }) {
-    const currentStore = this.data.cartGroupData.storeGoods.find((s) => s.storeId === storeId);
-    currentStore.isSelected = isSelected;
-    currentStore.promotionGoodsList.forEach((activity) => {
-      activity.goodsPromotionList.forEach((goods) => {
-        goods.isSelected = isSelected;
-      });
+    const cartList = wx.getStorageSync('cartList') || [];
+    // Assuming all items belong to the same store for now or filtering by storeId
+    cartList.forEach(item => {
+        // if (item.storeId === storeId) // Check if storeId is stored in item
+        item.isSelected = isSelected ? 1 : 0;
     });
+    wx.setStorageSync('cartList', cartList);
     return Promise.resolve();
   },
 
   // 加购数量变更
-  // 注：实际场景时应该调用接口
   changeQuantityService({ spuId, skuId, quantity }) {
-    this.findGoods(spuId, skuId).currentGoods.quantity = quantity;
+    const cartList = wx.getStorageSync('cartList') || [];
+    const item = cartList.find(i => i.spuId === spuId && i.skuId === skuId);
+    if (item) {
+        item.quantity = quantity;
+        wx.setStorageSync('cartList', cartList);
+    }
     return Promise.resolve();
   },
 
   // 删除加购商品
-  // 注：实际场景时应该调用接口
   deleteGoodsService({ spuId, skuId }) {
-    function deleteGoods(group) {
-      for (const gindex in group) {
-        const goods = group[gindex];
-        if (goods.spuId === spuId && goods.skuId === skuId) {
-          group.splice(gindex, 1);
-          return gindex;
-        }
-      }
-      return -1;
+    let cartList = wx.getStorageSync('cartList') || [];
+    const index = cartList.findIndex(i => i.spuId === spuId && i.skuId === skuId);
+    if (index > -1) {
+        cartList.splice(index, 1);
+        wx.setStorageSync('cartList', cartList);
     }
-    const { storeGoods, invalidGoodItems } = this.data.cartGroupData;
-    for (const store of storeGoods) {
-      for (const activity of store.promotionGoodsList) {
-        if (deleteGoods(activity.goodsPromotionList) > -1) {
-          return Promise.resolve();
-        }
-      }
-      if (deleteGoods(store.shortageGoodsList) > -1) {
-        return Promise.resolve();
-      }
-    }
-    if (deleteGoods(invalidGoodItems) > -1) {
-      return Promise.resolve();
-    }
-    return Promise.reject();
+    return Promise.resolve();
   },
 
   // 清空失效商品
-  // 注：实际场景时应该调用接口
   clearInvalidGoodsService() {
-    this.data.cartGroupData.invalidGoodItems = [];
+    // Implement if needed, for now just resolve
     return Promise.resolve();
   },
 
@@ -271,7 +255,14 @@ Page({
       selector: '#t-toast',
       message: `${isAllSelected ? '取消' : '点击'}了全选按钮`,
     });
+    
     // 调用接口改变全选
+    const cartList = wx.getStorageSync('cartList') || [];
+    cartList.forEach(item => {
+        item.isSelected = !isAllSelected ? 1 : 0;
+    });
+    wx.setStorageSync('cartList', cartList);
+    this.refreshData();
   },
 
   onToSettle() {

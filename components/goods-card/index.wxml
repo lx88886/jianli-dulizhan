@@ -13,6 +13,7 @@
 			  mode="aspectFill"
 			  lazy-load
 			/>
+            <slot name="thumb-cover" />
 		</view>
 		<view class="goods-card__body">
 			<view class="goods-card__upper">
@@ -32,30 +33,20 @@
 				</view>
 			</view>
 			<view class="goods-card__down">
-				<price
-				  wx:if="{{ goods.price }}"
-				  wr-class="spec-for-price"
-				  symbol-class="spec-for-symbol"
-				  symbol="{{currency}}"
-				  price="{{goods.price}}"
-				/>
-				<price
-				  wx:if="{{ goods.originPrice && isValidityLinePrice }}"
-				  wr-class="goods-card__origin-price"
-				  symbol="{{currency}}"
-				  price="{{goods.originPrice}}"
-				  type="delthrough"
-				/>
-				<t-icon
-				  class="goods-card__add-cart"
-				  prefix="wr"
-				  name="cartAdd"
-				  id="{{independentID}}-cart"
-				  data-id="{{independentID}}"
-				  catchtap="addCartHandle"
-				  size="48rpx"
-				  color="#FA550F"
-				/>
+                <block wx:if="{{ layout !== 'horizontal-wrap' }}">
+				    <view class="goods-card__stock">库存: {{ goods.stock }}</view>
+				    <t-icon
+				      class="goods-card__add-cart"
+				      prefix="wr"
+				      name="cartAdd"
+				      id="{{independentID}}-cart"
+				      data-id="{{independentID}}"
+				      catchtap="addCartHandle"
+				      size="48rpx"
+				      color="#FA550F"
+				    />
+                </block>
+                <slot name="append-body" />
 			</view>
 		</view>
 	</view>

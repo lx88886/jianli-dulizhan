@@ -40,6 +40,10 @@ const cosThumb = (url, width, height = width) => {
     return url;
   }
 
+  if (url.indexOf('cloud://') === 0) {
+    return url;
+  }
+
   if (url.indexOf('http://') === 0) {
     url = url.replace('http://', 'https://');
   }

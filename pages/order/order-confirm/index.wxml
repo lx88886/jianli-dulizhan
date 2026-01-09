@@ -29,55 +29,11 @@
         <view>{{goods.specs}}</view>
       </view>
       <view class="goods-right">
-        <price wr-class="goods-price" price="{{goods.price}}" fill="{{true}}" decimalSmaller />
         <view class="goods-num">x{{goods.num}}</view>
       </view>
     </view>
   </view>
   <view class="pay-detail">
-    <view class="pay-item">
-      <text>商品总额</text>
-      <price
-        fill
-        decimalSmaller
-        wr-class="pay-item__right font-bold"
-        price="{{settleDetailData.totalSalePrice || '0'}}"
-      />
-    </view>
-    <view class="pay-item">
-      <text>运费</text>
-      <view class="pay-item__right font-bold">
-        <block wx:if="{{settleDetailData.totalDeliveryFee && settleDetailData.totalDeliveryFee != 0}}">
-          +
-          <price fill decimalSmaller price="{{settleDetailData.totalDeliveryFee}}" />
-        </block>
-        <text wx:else>免运费</text>
-      </view>
-    </view>
-    <view class="pay-item">
-      <text>活动优惠</text>
-      <view class="pay-item__right primary font-bold">
-        -
-        <price fill price="{{settleDetailData.totalPromotionAmount || 0}}" />
-      </view>
-    </view>
-    <view class="pay-item">
-      <text>优惠券</text>
-      <view
-        class="pay-item__right"
-        data-storeid="{{settleDetailData.storeGoodsList[0].storeId}}"
-        catchtap="onOpenCoupons"
-      >
-        <block wx:if="{{submitCouponList.length}}">
-          <block wx:if="{{settleDetailData.totalCouponAmount && settleDetailData.totalCouponAmount !== '0'}}">
-            -<price fill decimalSmaller price="{{settleDetailData.totalCouponAmount}}" />
-          </block>
-          <block wx:else>选择优惠券</block>
-        </block>
-        <text wx:else>无可用</text>
-        <t-icon name="chevron-right" size="32rpx" color="#BBBBBB" />
-      </view>
-    </view>
     <view class="pay-item" wx:if="{{settleDetailData.invoiceSupport}}">
       <text>发票</text>
       <view class="pay-item__right" catchtap="onReceipt">
@@ -97,14 +53,12 @@
   </view>
   <view class="amount-wrapper">
     <view class="pay-amount">
-      <text class="order-num">共{{settleDetailData.totalGoodsCount}}件</text>
-      <text>小计</text>
-      <price class="total-price" price="{{settleDetailData.totalPayAmount}}" fill="{{false}}" decimalSmaller />
+      <text>小计: {{settleDetailData.totalGoodsCount}}件</text>
     </view>
   </view>
   <view class="wx-pay-cover">
     <view class="wx-pay">
-      <price decimalSmaller fill class="price" price="{{settleDetailData.totalPayAmount || '0'}}" />
+      <view class="total-count">共{{settleDetailData.totalGoodsCount}}件</view>
       <view class="submit-btn {{ settleDetailData.settleType === 1 ? '':'btn-gray'}}" bindtap="submitOrder">
         提交订单
       </view>

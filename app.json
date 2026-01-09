@@ -44,6 +44,15 @@
       "root": "pages/promotion",
       "name": "promotion",
       "pages": ["promotion-detail/index"]
+    },
+    {
+      "root": "pages/admin",
+      "name": "admin",
+      "pages": [
+        "manager/index",
+        "goods/list/index",
+        "goods/edit/index"
+      ]
     }
   ],
   "tabBar": {

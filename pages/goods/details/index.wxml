@@ -13,14 +13,7 @@
     <view class="goods-info">
       <view class="goods-number">
         <view class="goods-price">
-          <price
-            wr-class="class-goods-price"
-            symbol-class="class-goods-symbol"
-            price="{{minSalePrice}}"
-            type="lighter"
-          />
-          <view class="goods-price-up">起</view>
-          <price wr-class="class-goods-del" price="{{maxLinePrice}}" type="delthrough" />
+          <view class="goods-stock">库存: {{details.spuStockQuantity}}</view>
         </view>
         <view class="sold-num">已售{{soldNum}}</view>
       </view>
@@ -48,7 +41,7 @@
       </view>
       <view class="goods-intro">{{intro}}</view>
     </view>
-    <view class="spu-select" bindtap="showSkuSelectPopup">
+    <view class="spu-select" bindtap="toAddCart">
       <view class="label">已选</view>
       <view class="content">
         <view class="{{!selectedAttrStr ? 'tintColor' : ''}}">

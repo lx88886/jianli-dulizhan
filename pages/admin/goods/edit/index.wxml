@@ -1,0 +1,23 @@
+<view class="edit-container">
+  <t-input label="商品标题" placeholder="请输入商品名称" value="{{title}}" bind:change="onTitleChange" />
+  <t-input label="价格(分)" placeholder="请输入价格(单位:分)" type="number" value="{{price}}" bind:change="onPriceChange" />
+  <t-input label="划线价(分)" placeholder="请输入划线价" type="number" value="{{linePrice}}" bind:change="onLinePriceChange" />
+  <t-input label="库存" placeholder="请输入库存数量" type="number" value="{{stock}}" bind:change="onStockChange" />
+  
+  <view class="upload-wrapper">
+    <view class="label">商品主图</view>
+    <t-upload
+      mediaType="{{['image']}}"
+      max="1"
+      files="{{fileList}}"
+      bind:add="onAddImage"
+      bind:remove="onRemoveImage"
+    />
+  </view>
+
+  <view class="submit-btn">
+    <t-button block theme="primary" bind:tap="onSubmit">保存</t-button>
+  </view>
+  
+  <t-toast id="t-toast" />
+</view>

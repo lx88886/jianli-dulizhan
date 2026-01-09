@@ -1,6 +1,8 @@
 export const config = {
   /** 是否使用mock代替api返回 */
   useMock: true,
+  /** 是否使用云开发 */
+  useCloud: true,
 };
 
 export const cdnBase =

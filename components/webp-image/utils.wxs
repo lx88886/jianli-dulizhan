@@ -37,6 +37,7 @@ function imageMogr(url, options) {
     url.indexOf('qlogo.cn') !== -1 ||
     url.indexOf('wxfile://') === 0 ||
     url.indexOf('http://tmp/wx') === 0 ||
+    url.indexOf('cloud://') === 0 ||
     url.indexOf('imageMogr2') !== -1
   ) {
     //qlogo.cn域名或者本地图片不做转换

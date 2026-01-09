@@ -3,6 +3,7 @@
   font-size: 24rpx;
   border-radius: 0 0 16rpx 16rpx;
   border-bottom: none;
+  height: 100%;
 }
 
 .goods-card__main {
@@ -13,10 +14,10 @@
   background: transparent;
   width: 342rpx;
   border-radius: 0 0 16rpx 16rpx;
-  align-items: center;
   justify-content: center;
   margin-bottom: 16rpx;
   flex-direction: column;
+  height: 100%;
 }
 
 .goods-card__thumb {
@@ -46,6 +47,8 @@
   border-radius: 0 0 16rpx 16rpx;
   padding: 16rpx 24rpx 18rpx;
   flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .goods-card__upper {
@@ -61,7 +64,7 @@
   color: #333;
   font-weight: 400;
   display: -webkit-box;
-  height: 72rpx;
+  min-height: 72rpx;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
@@ -119,15 +122,8 @@
   right: 0;
 }
 
-.spec-for-price {
-  font-size: 36rpx;
-  white-space: nowrap;
-  font-weight: 700;
-  order: 1;
+.goods-card__stock {
+  font-size: 28rpx;
   color: #fa4126;
-  margin: 0;
-}
-
-.spec-for-symbol {
-  font-size: 24rpx;
+  font-weight: bold;
 }
