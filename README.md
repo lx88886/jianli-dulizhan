@@ -125,3 +125,8 @@ TDesign 团队会及时在企业微信大群中同步发布版本、问题修复
 ## :page_with_curl: 开源协议
 
 TDesign 遵循 [MIT 协议](https://github.com/Tencent/tdesign-miniprogram-starter-retail/LICENSE)。
+
+## 变更日志
+
+- **2024-05-20**: 修改库存数据脚本，统一库存为 10。
+
