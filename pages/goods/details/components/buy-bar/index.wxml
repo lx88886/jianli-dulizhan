@@ -23,8 +23,11 @@
 	</view>
 	<block wx:if="{{buttonType === 1}}">
 		<view class="flex buy-buttons">
-			<view class="bar-buy-now {{soldout || !isStock ? 'bar-buyNow-disabled' : ''}}" bindtap="toAddCart">
-				立即订购
+			<view class="bar-separately {{soldout || !isStock ? 'bar-addCart-disabled' : ''}}" bindtap="toAddCart">
+				加入预定单
+			</view>
+			<view class="bar-buy {{soldout || !isStock ? 'bar-buyNow-disabled' : ''}}" bindtap="toBuyNow">
+				立即预定
 			</view>
 		</view>
 	</block>

@@ -11,7 +11,7 @@ export default [
   },
   {
     icon: 'cart',
-    text: '购物车',
+    text: '预定单',
     url: 'pages/cart/index',
   },
   {

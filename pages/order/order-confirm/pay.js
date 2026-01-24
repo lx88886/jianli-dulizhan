@@ -31,7 +31,7 @@ export const paySuccess = (payOrderInfo) => {
   Toast({
     context: this,
     selector: '#t-toast',
-    message: '支付成功',
+    message: '预定提交成功',
     duration: 2000,
     icon: 'check-circle',
   });

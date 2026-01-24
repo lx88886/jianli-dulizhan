@@ -2,7 +2,7 @@
 <view class="pay-result">
 	<view class="pay-status">
 		<t-icon name="check-circle-filled" size="60rpx" color="#47D368" />
-		<text>下单成功</text>
+		<text>预定成功，等待确认</text>
 	</view>
 	<view class="pay-money">
 		<!-- 微信支付： -->
@@ -15,7 +15,7 @@
 		/> -->
 	</view>
 	<view class="btn-wrapper">
-		<view class="status-btn" data-type="orderList" bindtap="onTapReturn">查看订单</view>
+		<view class="status-btn" data-type="orderList" bindtap="onTapReturn">查看预定单</view>
 		<view class="status-btn" data-type="home" bindtap="onTapReturn">返回首页</view>
 	</view>
 </view>

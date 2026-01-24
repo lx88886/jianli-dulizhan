@@ -54,7 +54,7 @@ Page({
         iconName: 'home',
       },
       {
-        title: '购物车',
+        title: '预定单',
         url: '/pages/cart/index',
         iconName: 'cart',
         showCartNum: true,

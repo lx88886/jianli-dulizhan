@@ -48,38 +48,24 @@ const menuData = [
 
 const orderTagInfos = [
   {
-    title: '待付款',
-    iconName: 'wallet',
-    orderNum: 0,
-    tabType: 5,
-    status: 1,
-  },
-  {
-    title: '待发货',
-    iconName: 'deliver',
+    title: '待确认',
+    iconName: 'time',
     orderNum: 0,
     tabType: 10,
     status: 1,
   },
   {
-    title: '待收货',
-    iconName: 'package',
+    title: '已确认',
+    iconName: 'check-circle',
     orderNum: 0,
     tabType: 40,
     status: 1,
   },
   {
-    title: '待评价',
-    iconName: 'comment',
+    title: '历史预定',
+    iconName: 'file-copy',
     orderNum: 0,
     tabType: 60,
-    status: 1,
-  },
-  {
-    title: '退款/售后',
-    iconName: 'exchang',
-    orderNum: 0,
-    tabType: 0,
     status: 1,
   },
 ];

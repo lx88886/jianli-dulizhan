@@ -12,7 +12,7 @@
 		<!-- Price display removed -->
 	</view>
 	<view catchtap="handleToSettle" class="{{!isDisabled ? '' : 'disabled-btn'}} account-btn" hover-class="{{!isDisabled ? '' : 'hover-btn'}}">
-		去结算({{totalGoodsNum}})
+		填写预定信息({{totalGoodsNum}})
 	</view>
 </view>
 
