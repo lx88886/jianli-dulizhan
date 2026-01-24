@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+# 简历和独立站 (jianli-dulizhan)
+
 <p align="center">
   <a href="https://tdesign.tencent.com/" target="_blank">
     <img alt="TDesign Logo" width="200" src="https://tdesign.gtimg.com/site/TDesign.png">
@@ -131,7 +132,3 @@ TDesign 遵循 [MIT 协议](https://github.com/Tencent/tdesign-miniprogram-start
 
 - **2024-05-20**: 修改库存数据脚本，统一库存为 10。
 
-=======
-# jianli-dulizhan
- 简历和独立站
->>>>>>> fac9d93faccfe8e6cd8a60a05ee1daa032a69dc0
