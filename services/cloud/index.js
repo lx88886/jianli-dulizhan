@@ -1,13 +1,24 @@
 
-const db = wx.cloud.database();
-const _ = db.command;
+let db = null;
+let _ = null;
 
 export const cloudService = {
+  /**
+   * 初始化数据库连接
+   */
+  initDB() {
+    if (!db) {
+      db = wx.cloud.database();
+      _ = db.command;
+    }
+  },
+
   /**
    * 初始化数据库集合
    * 确保商品集合存在
    */
   async initCollections() {
+    this.initDB();
     try {
       // 尝试添加一个测试记录来创建 goods 集合
       await db.collection('goods').add({
@@ -35,9 +46,10 @@ export const cloudService = {
    * @param {Array} categories 
    */
   async initData(goods, categories) {
+    this.initDB();
     // 1. Clear existing (optional, maybe dangerous) or just add
     // For now, let's just add if not exists or maybe the user just wants to add
-    
+
     // We'll insert goods
     let successCount = 0;
     let failCount = 0;
@@ -46,7 +58,7 @@ export const cloudService = {
       try {
         // Remove _id if it exists in mock data to let Mongo generate it or use spuId
         const { _id, ...goodData } = good;
-        
+
         // Check if exists
         const check = await db.collection('goods').where({
           spuId: goodData.spuId
@@ -75,6 +87,7 @@ export const cloudService = {
    * Fetch Goods List
    */
   async getGoodsList(page = 1, pageSize = 20) {
+    this.initDB();
     return db.collection('goods')
       .skip((page - 1) * pageSize)
       .limit(pageSize)
@@ -82,6 +95,7 @@ export const cloudService = {
   },
 
   async getGoodsListForCustomer(page = 1, pageSize = 20) {
+    this.initDB();
     return db.collection('goods')
       .where({ isPutOnSale: 1 })
       .skip((page - 1) * pageSize)
@@ -93,10 +107,12 @@ export const cloudService = {
    * Get Good Detail
    */
   async getGood(id) {
+    this.initDB();
     return db.collection('goods').doc(id).get();
   },
 
   async getGoodBySpuId(spuId) {
+    this.initDB();
     const res = await db.collection('goods').where({ spuId: spuId }).get();
     return res.data[0];
   },
@@ -105,6 +121,7 @@ export const cloudService = {
    * Add Good
    */
   async addGood(good) {
+    this.initDB();
     return db.collection('goods').add({
       data: {
         ...good,
@@ -119,6 +136,7 @@ export const cloudService = {
    * Update Good
    */
   async updateGood(id, data) {
+    this.initDB();
     return db.collection('goods').doc(id).update({
       data: {
         ...data,
@@ -131,6 +149,7 @@ export const cloudService = {
    * Delete Good (or soft delete)
    */
   async deleteGood(id) {
+    this.initDB();
     return db.collection('goods').doc(id).remove();
   },
   

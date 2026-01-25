@@ -14,7 +14,10 @@
       "Bash(git add app.js app.json pages/cart/components/cart-group/index.wxml pages/goods/details/index.js pages/goods/details/index.wxml pages/order/config.js pages/usercenter/index.js services/cloud/index.js pages/coupon/ pages/promotion/)",
       "Bash(git reset HEAD)",
       "Bash(git add -A)",
-      "Bash(git commit -m \"$\\(cat <<''EOF''\nchore: remove coupon and promotion pages, add new files\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nchore: remove coupon and promotion pages, add new files\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)",
+      "Bash(git add .)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfix: 修复云初始化错误和 WXML 标签未关闭问题\n\n- 修复 cart-group/index.wxml 中 view 标签未关闭的编译错误\n- 修复 services/cloud/index.js 中云数据库在 wx.cloud.init 前调用的错误\n- 将云数据库初始化改为懒加载，确保在 wx.cloud.init 完成后才使用\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }
