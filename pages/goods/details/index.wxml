@@ -15,18 +15,7 @@
         <view class="goods-price">
           <view class="goods-stock">库存: {{details.spuStockQuantity}}</view>
         </view>
-        <view class="sold-num">已售{{soldNum}}</view>
-      </view>
-      <view wx:if="{{activityList.length > 0}}" class="goods-activity" bindtap="showPromotionPopup">
-        <view class="tags-container">
-          <view wx:for="{{activityList}}" data-promotionId="{{item.promotionId}}" wx:key="index" wx:if="{{index<4}}">
-            <view class="goods-activity-tag">{{item.tag}}</view>
-          </view>
-        </view>
-        <view class="activity-show">
-          <view class="activity-show-text">领劵</view>
-          <t-icon name="chevron-right" size="42rpx" />
-        </view>
+        <view class="sold-num">已预定{{soldNum}}</view>
       </view>
       <view class="goods-title">
         <view class="goods-name">{{details.title}}</view>
@@ -91,28 +80,7 @@
     isStock="{{isStock}}"
     outOperateStatus="{{outOperateStatus}}"
   >
-    <view slot="goods-price">
-      <view class="popup-sku__price">
-        <price
-          wx:if="{{!isAllSelectedSku || (!promotionSubCode && isAllSelectedSku)}}"
-          price="{{selectSkuSellsPrice ? selectSkuSellsPrice : minSalePrice }}"
-          wr-class="popup-sku__price-num"
-          symbol-class="popup-sku__price-symbol"
-        />
-        <price
-          wx:if="{{selectSkuSellsPrice === 0 && minSalePrice !== maxSalePrice && !isAllSelectedSku}}"
-          price="{{maxSalePrice}}"
-          wr-class="popup-sku__price-del"
-          type="delthrough"
-        />
-      </view>
-    </view>
+    <!-- 价格已隐藏 - 预定系统不显示价格 -->
   </goods-specs-popup>
-  <promotion-popup
-    list="{{list}}"
-    bind:closePromotionPopup="closePromotionPopup"
-    show="{{isShowPromotionPop}}"
-    bind:promotionChange="promotionChange"
-  />
 </view>
 <t-toast id="t-toast" />

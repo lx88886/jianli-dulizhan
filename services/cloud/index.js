@@ -3,6 +3,30 @@ const db = wx.cloud.database();
 const _ = db.command;
 
 export const cloudService = {
+  /**
+   * 初始化数据库集合
+   * 确保商品集合存在
+   */
+  async initCollections() {
+    try {
+      // 尝试添加一个测试记录来创建 goods 集合
+      await db.collection('goods').add({
+        data: {
+          _init: true,
+          spuId: '__init__',
+          title: '__初始化__',
+          isPutOnSale: 0
+        }
+      });
+      // 删除初始化记录
+      await db.collection('goods').where({ _init: true }).remove();
+      console.log('goods 集合初始化成功');
+    } catch (e) {
+      // 集合可能已存在，这是正常的
+      console.log('goods 集合已存在或初始化成功');
+    }
+  },
+
   // Check if we should use cloud (can be toggled or just assume yes for admin)
   
   /**

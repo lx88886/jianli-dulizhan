@@ -9,18 +9,8 @@ const menuData = [
       url: '',
       type: 'address',
     },
-    {
-      title: '优惠券',
-      tit: '',
-      url: '',
-      type: 'coupon',
-    },
-    {
-      title: '积分',
-      tit: '',
-      url: '',
-      type: 'point',
-    },
+    // 已移除优惠券菜单 - 预定系统
+    // 已移除积分菜单 - 预定系统
   ],
   [
     {
@@ -152,20 +142,8 @@ Page({
         });
         break;
       }
-      case 'point': {
-        Toast({
-          context: this,
-          selector: '#t-toast',
-          message: '你点击了积分菜单',
-          icon: '',
-          duration: 1000,
-        });
-        break;
-      }
-      case 'coupon': {
-        wx.navigateTo({ url: '/pages/coupon/coupon-list/index' });
-        break;
-      }
+      // 已移除积分菜单处理 - 预定系统
+      // 已移除优惠券菜单处理 - 预定系统
       case 'admin-manager': {
         wx.navigateTo({ url: '/pages/admin/manager/index' });
         break;

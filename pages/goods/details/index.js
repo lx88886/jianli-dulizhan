@@ -1,10 +1,7 @@
 import Toast from 'tdesign-miniprogram/toast/index';
 import { fetchGood } from '../../../services/good/fetchGood';
-import { fetchActivityList } from '../../../services/activity/fetchActivityList';
-import {
-  getGoodsDetailsCommentList,
-  getGoodsDetailsCommentsCount,
-} from '../../../services/good/fetchGoodsDetailsComments';
+// 已移除活动列表服务 - 预定系统
+// 已移除评论相关服务 - 预定系统
 
 import { cdnBase } from '../../../config/index';
 
@@ -21,16 +18,8 @@ const obj2Params = (obj = {}, encode = false) => {
 
 Page({
   data: {
-    commentsList: [],
-    commentsStatistics: {
-      badCount: 0,
-      commentCount: 0,
-      goodCount: 0,
-      goodRate: 0,
-      hasImageCount: 0,
-      middleCount: 0,
-    },
-    isShowPromotionPop: false,
+    // 已移除评论相关数据 - 预定系统
+    // 已移除促销弹窗相关数据 - 预定系统
     activityList: [],
     recLeftImg,
     recRightImg,
@@ -298,28 +287,11 @@ Page({
     });
   },
 
-  closePromotionPopup() {
-    this.setData({
-      isShowPromotionPop: false,
-    });
-  },
-
-  promotionChange(e) {
-    const { index } = e.detail;
-    wx.navigateTo({
-      url: `/pages/promotion/promotion-detail/index?promotion_id=${index}`,
-    });
-  },
-
-  showPromotionPopup() {
-    this.setData({
-      isShowPromotionPop: true,
-    });
-  },
+  // 已移除促销弹窗相关方法 - 预定系统
 
   getDetail(spuId) {
-    Promise.all([fetchGood(spuId), fetchActivityList()]).then((res) => {
-      const [details, activityList] = res;
+    // 已移除活动列表获取 - 预定系统
+    fetchGood(spuId).then((details) => {
       const skuArray = [];
       const { skuList, primaryImage, isPutOnSale, minSalePrice, maxSalePrice, maxLinePrice, soldNum } = details;
       skuList.forEach((item) => {
@@ -329,21 +301,12 @@ Page({
           specInfo: item.specInfo,
         });
       });
-      const promotionArray = [];
-      activityList.forEach((item) => {
-        promotionArray.push({
-          tag: item.promotionSubCode === 'MYJ' ? '满减' : '满折',
-          label: '满100元减99.9元',
-        });
-      });
       this.setData({
         details,
-        activityList,
         isStock: details.spuStockQuantity > 0,
         maxSalePrice: maxSalePrice ? parseInt(maxSalePrice) : 0,
         maxLinePrice: maxLinePrice ? parseInt(maxLinePrice) : 0,
         minSalePrice: minSalePrice ? parseInt(minSalePrice) : 0,
-        list: promotionArray,
         skuArray: skuArray,
         primaryImage,
         soldout: isPutOnSale === 0,
@@ -352,7 +315,8 @@ Page({
     });
   },
 
-  async getCommentsList() {
+  // 已移除评论相关方法 - 预定系统
+  // async getCommentsList()
     try {
       const code = 'Success';
       const data = await getGoodsDetailsCommentList();
@@ -392,37 +356,10 @@ Page({
     return customInfo;
   },
 
-  /** 获取评价统计 */
-  async getCommentsStatistics() {
-    try {
-      const code = 'Success';
-      const data = await getGoodsDetailsCommentsCount();
-      if (code.toUpperCase() === 'SUCCESS') {
-        const { badCount, commentCount, goodCount, goodRate, hasImageCount, middleCount } = data;
-        const nextState = {
-          commentsStatistics: {
-            badCount: parseInt(`${badCount}`),
-            commentCount: parseInt(`${commentCount}`),
-            goodCount: parseInt(`${goodCount}`),
-            /** 后端返回百分比后数据但没有限制位数 */
-            goodRate: Math.floor(goodRate * 10) / 10,
-            hasImageCount: parseInt(`${hasImageCount}`),
-            middleCount: parseInt(`${middleCount}`),
-          },
-        };
-        this.setData(nextState);
-      }
-    } catch (error) {
-      console.error('comments statiistics error:', error);
-    }
-  },
-
-  /** 跳转到评价列表 */
-  navToCommentsListPage() {
-    wx.navigateTo({
-      url: `/pages/goods/comments/index?spuId=${this.data.spuId}`,
-    });
-  },
+  // 已移除评论相关方法 - 预定系统
+  // async getCommentsList()
+  // async getCommentsStatistics()
+  // navToCommentsListPage()
 
   onLoad(query) {
     const { spuId } = query;
@@ -430,7 +367,8 @@ Page({
       spuId: spuId,
     });
     this.getDetail(spuId);
-    this.getCommentsList(spuId);
-    this.getCommentsStatistics(spuId);
+    // 已移除评论相关调用 - 预定系统
+    // this.getCommentsList(spuId);
+    // this.getCommentsStatistics(spuId);
   },
 });

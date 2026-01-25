@@ -18,26 +18,11 @@
           <t-icon prefix="wr" size="40rpx" color="#333333" name="store" />
           <view class="store-name">{{store.storeName}}</view>
         </view>
-        <!-- <view class="get-coupon" catch:tap="gotoCoupons">优惠券</view> -->
+        <!-- 已移除优惠券入口 - 预定系统 -->
       </view>
     </view>
+    <!-- 已移除促销显示 - 预定系统 -->
     <block wx:for="{{store.promotionGoodsList}}" wx:for-item="promotion" wx:for-index="promoindex" wx:key="promoindex">
-      <view
-        class="promotion-wrap"
-        wx:if="{{handlePromotion.hasPromotion(promotion.promotionCode)}}"
-        bindtap="gotoBuyMore"
-        data-promotion="{{promotion}}"
-        data-store-id="{{store.storeId}}"
-      >
-        <view class="promotion-title">
-          <view class="promotion-icon">{{promotion.tag}}</view>
-          <view class="promotion-text">{{promotion.description}}</view>
-        </view>
-        <view class="promotion-action action-btn" hover-class="action-btn--active">
-          <view class="promotion-action-label"> {{promotion.isNeedAddOnShop == 1 ? '去凑单' : '再逛逛'}} </view>
-          <t-icon name="chevron-right" size="32rpx" color="#BBBBBB" />
-        </view>
-      </view>
       <view
         class="goods-item"
         wx:for="{{promotion.goodsPromotionList}}"
@@ -91,12 +76,6 @@
           <view slot="right" class="swiper-right-del" bindtap="deleteGoods" data-goods="{{goods}}"> 删除 </view>
         </swipeout>
       </view>
-      <view
-        class="promotion-line-wrap"
-        wx:if="{{handlePromotion.hasPromotion(promotion.promotionCode) && promoindex != (store.promotionGoodsList.length - 2)}}"
-      >
-        <view class="promotion-line" />
-      </view>
     </block>
     <block wx:if="{{store.shortageGoodsList.length>0}}">
       <view
@@ -131,15 +110,8 @@
           <view slot="right" class="swiper-right-del" bindtap="deleteGoods" data-goods="{{goods}}"> 删除 </view>
         </swipeout>
       </view>
-      <view
-        class="promotion-line-wrap"
-        wx:if="{{handlePromotion.hasPromotion(promotion.promotionCode) && promoindex != (store.promotionGoodsList.length - 2)}}"
-      >
-        <view class="promotion-line" />
-      </view>
     </block>
   </view>
-</view>
 <specs-popup
   show="{{isShowSpecs}}"
   title="{{currentGoods.title || ''}}"
