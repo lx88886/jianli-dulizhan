@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(if exist .DS_Store del .DS_Store)",
+      "Bash(if exist wxcs rd /s /q wxcs)",
+      "Bash(if exist .DS_Store del /F /Q .DS_Store)",
+      "Bash(if exist wxcs rd /S /Q wxcs)",
+      "Bash(powershell -Command \"cd ''C:\\\\Users\\\\李鑫\\\\WeChatProjects\\\\miniprogram-4''; if \\(Test-Path ''.DS_Store''\\) { Remove-Item ''.DS_Store'' -Force }; if \\(Test-Path ''wxcs''\\) { Remove-Item ''wxcs'' -Recurse -Force }\")",
+      "Bash(git fetch origin)",
+      "Bash(git reset --hard origin/main)",
+      "Bash(git add app.js app.json pages/cart/components/cart-group/index.wxml pages/goods/details/index.js pages/goods/details/index.wxml pages/order/config.js pages/usercenter/index.js services/cloud/index.js)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nrefactor: 移除营销功能，改造为预定系统\n\n- 移除优惠券和促销页面\n- 移除商品评论功能\n- 移除订单发票、支付功能\n- 修改所有文案为预定相关\n- 隐藏价格显示\n- 优化云初始化逻辑\n\n详见重构计划文档。\nEOF\n\\)\")",
+      "Bash(git commit -m \"refactor: 移除营销功能，改造为预定系统\n\n- 移除优惠券和促销页面\n- 移除商品评论功能\n- 移除订单发票、支付功能  \n- 修改所有文案为预定相关\n- 隐藏价格显示\n- 优化云初始化逻辑\")",
+      "Bash(git add app.js app.json pages/cart/components/cart-group/index.wxml pages/goods/details/index.js pages/goods/details/index.wxml pages/order/config.js pages/usercenter/index.js services/cloud/index.js pages/coupon/ pages/promotion/)",
+      "Bash(git reset HEAD)",
+      "Bash(git add -A)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nchore: remove coupon and promotion pages, add new files\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}
