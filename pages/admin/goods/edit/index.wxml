@@ -1,23 +1,159 @@
 <view class="edit-container">
-  <t-input label="商品标题" placeholder="请输入商品名称" value="{{title}}" bind:change="onTitleChange" />
-  <t-input label="价格(分)" placeholder="请输入价格(单位:分)" type="number" value="{{price}}" bind:change="onPriceChange" />
-  <t-input label="划线价(分)" placeholder="请输入划线价" type="number" value="{{linePrice}}" bind:change="onLinePriceChange" />
-  <t-input label="库存" placeholder="请输入库存数量" type="number" value="{{stock}}" bind:change="onStockChange" />
-  
-  <view class="upload-wrapper">
-    <view class="label">商品主图</view>
-    <t-upload
-      mediaType="{{['image']}}"
-      max="1"
-      files="{{fileList}}"
-      bind:add="onAddImage"
-      bind:remove="onRemoveImage"
-    />
+  <!-- ============ 基础信息 ============ -->
+  <view class="section">
+    <view class="section-title">基础信息</view>
+
+    <view class="form-item">
+      <view class="form-label required">商品标题</view>
+      <t-input
+        placeholder="请输入商品名称"
+        value="{{title}}"
+        bind:change="onTitleChange"
+        border="{{false}}"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label required">商品图片</view>
+      <view class="upload-tip">建议尺寸750*750，最多上传9张，第一张为主图</view>
+      <t-upload
+        mediaType="{{['image']}}"
+        max="9"
+        gridConfig="{{imagesGridConfig}}"
+        files="{{imagesList}}"
+        bind:add="onAddImages"
+        bind:remove="onRemoveImage"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">库存数量</view>
+      <t-input
+        placeholder="请输入库存数量"
+        type="number"
+        value="{{stock}}"
+        bind:change="onStockChange"
+        border="{{false}}"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">上架状态</view>
+      <view class="cell-wrapper">
+        <text class="cell-note">{{isPutOnSale ? '已上架' : '已下架'}}</text>
+        <t-switch value="{{isPutOnSale}}" bind:change="onSaleStatusChange" />
+      </view>
+    </view>
   </view>
 
-  <view class="submit-btn">
-    <t-button block theme="primary" bind:tap="onSubmit">保存</t-button>
+  <!-- ============ 商品详情 ============ -->
+  <view class="section">
+    <view class="section-title">商品详情</view>
+    <view class="form-item">
+      <view class="form-label">详情图片</view>
+      <view class="upload-tip">建议宽度750px，可上传多张图片</view>
+      <t-upload
+        mediaType="{{['image']}}"
+        max="20"
+        gridConfig="{{descGridConfig}}"
+        files="{{descList}}"
+        bind:add="onAddDescImages"
+        bind:remove="onRemoveDescImage"
+      />
+    </view>
   </view>
-  
+
+  <!-- ============ 规格管理 ============ -->
+  <view class="section">
+    <view class="section-title">规格管理</view>
+    <view class="form-item">
+      <view class="form-label">启用多规格</view>
+      <view class="cell-wrapper">
+        <text class="cell-note">{{hasSpecs ? '已启用' : '未启用'}}</text>
+        <t-switch value="{{hasSpecs}}" bind:change="onSpecsSwitchChange" />
+      </view>
+    </view>
+
+    <view wx:if="{{hasSpecs}}">
+      <!-- 已添加的规格列表 -->
+      <view class="spec-list" wx:if="{{specList.length > 0}}">
+        <view class="spec-item" wx:for="{{specList}}" wx:key="specId" wx:for-index="specIndex">
+          <view class="spec-header">
+            <text class="spec-name">{{item.title}}</text>
+            <t-icon name="close-circle" size="40rpx" color="#E34D59" bindtap="onDeleteSpec" data-index="{{specIndex}}" />
+          </view>
+          <view class="spec-values">
+            <view class="spec-value-tag" wx:for="{{item.specValueList}}" wx:for-item="value" wx:key="specValueId">
+              {{value.specValue}}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 添加新规格 -->
+      <view class="add-spec-panel">
+        <view class="form-item">
+          <view class="form-label required">规格名称</view>
+          <t-input
+            placeholder="如：颜色、尺寸"
+            value="{{currentSpecName}}"
+            bind:change="onCurrentSpecNameInput"
+            border="{{false}}"
+          />
+        </view>
+
+        <view class="form-item">
+          <view class="form-label required">规格值</view>
+          <view class="spec-values-input">
+            <view class="spec-value-tag" wx:for="{{currentSpecValues}}" wx:key="index" wx:for-index="valueIndex">
+              {{item}}
+              <t-icon name="close" size="32rpx" color="#999" bindtap="onDeleteSpecValue" data-index="{{valueIndex}}" />
+            </view>
+          </view>
+          <view class="add-spec-value-row">
+            <t-input
+              placeholder="输入规格值"
+              value="{{currentSpecValue}}"
+              bind:change="onSpecValueInput"
+              border="{{false}}"
+            />
+            <t-button size="small" variant="outline" bindtap="onAddSpecValue">添加</t-button>
+          </view>
+        </view>
+
+        <t-button theme="primary" size="large" block bindtap="onAddSpec">确认添加规格</t-button>
+      </view>
+
+      <!-- SKU列表 -->
+      <view class="sku-section" wx:if="{{skuList.length > 0}}">
+        <view class="section-title">库存设置</view>
+        <view class="sku-list">
+          <view class="sku-item" wx:for="{{skuList}}" wx:key="skuId" wx:for-index="skuIndex">
+            <view class="sku-specs">
+              <text class="sku-spec-text" wx:for="{{item.specInfo}}" wx:for-item="spec" wx:key="specValueId">
+                {{spec.specValue}}
+              </text>
+            </view>
+            <view class="sku-stock">
+              <text class="sku-label">库存：</text>
+              <t-input
+                type="number"
+                value="{{item.stockQuantity}}"
+                data-index="{{skuIndex}}"
+                bind:change="onSkuStockChange"
+                border="{{false}}"
+              />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 底部按钮 ============ -->
+  <view class="submit-section">
+    <t-button theme="primary" size="large" block bindtap="onSubmit">保存商品</t-button>
+  </view>
+
   <t-toast id="t-toast" />
 </view>

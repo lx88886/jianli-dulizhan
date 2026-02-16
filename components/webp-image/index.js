@@ -40,7 +40,7 @@ Component({
     ready() {
       const { mode } = this.properties;
       // 获取容器的真实宽高，设置图片的裁剪宽度
-      this.getRect('.J-image').then((res) => {
+      this.getRect('.webp-image-wrapper').then((res) => {
         if (res) {
           const { width, height } = res;
           this.setData(

@@ -317,28 +317,8 @@ Page({
 
   // 已移除评论相关方法 - 预定系统
   // async getCommentsList()
-    try {
-      const code = 'Success';
-      const data = await getGoodsDetailsCommentList();
-      const { homePageComments } = data;
-      if (code.toUpperCase() === 'SUCCESS') {
-        const nextState = {
-          commentsList: homePageComments.map((item) => {
-            return {
-              goodsSpu: item.spuId,
-              userName: item.userName || '',
-              commentScore: item.commentScore,
-              commentContent: item.commentContent || '用户未填写评价',
-              userHeadUrl: item.isAnonymity ? this.anonymityAvatar : item.userHeadUrl || this.anonymityAvatar,
-            };
-          }),
-        };
-        this.setData(nextState);
-      }
-    } catch (error) {
-      console.error('comments error:', error);
-    }
-  },
+  // async getCommentsStatistics()
+  // navToCommentsListPage()
 
   onShareAppMessage() {
     // 自定义的返回信息

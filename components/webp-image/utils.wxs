@@ -132,7 +132,7 @@ function getSrc(options) {
     });
   }
 
-  return '';
+  return options.src;
 }
 
 module.exports = {

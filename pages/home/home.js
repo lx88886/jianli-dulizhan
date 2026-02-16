@@ -35,9 +35,7 @@ Page({
   },
 
   onReachBottom() {
-    if (this.data.goodsListLoadStatus === 0) {
-      this.loadGoodsList();
-    }
+    // 移除触底加载更多，一次性加载所有商品
   },
 
   onPullDownRefresh() {
@@ -82,21 +80,16 @@ Page({
 
     this.setData({ goodsListLoadStatus: 1 });
 
-    const pageSize = this.goodListPagination.num;
-    let pageIndex = this.privateData.tabIndex * pageSize + this.goodListPagination.index + 1;
-    if (fresh) {
-      pageIndex = 0;
-    }
+    // 一次性加载所有商品，设置一个很大的数量
+    const pageSize = 1000;
+    const pageIndex = 1;
 
     try {
-      const nextList = await fetchGoodsList(pageIndex, pageSize);
+      const allGoods = await fetchGoodsList(pageIndex, pageSize);
       this.setData({
-        goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
+        goodsList: allGoods,
         goodsListLoadStatus: 0,
       });
-
-      this.goodListPagination.index = pageIndex;
-      this.goodListPagination.num = pageSize;
     } catch (err) {
       this.setData({ goodsListLoadStatus: 3 });
     }
